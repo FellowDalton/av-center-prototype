@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Monitor, Mic, Camera, Lightbulb, Building2, Headphones } from "lucide-react";
 
-export default function FeaturesSection(): JSX.Element {
+export default function FeaturesSection(): React.ReactElement {
   return (
     <section id="services" className="relative z-10 py-20 px-4">
       <div className="max-w-6xl mx-auto">

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent, type Variants } from "framer-motion";
 import { Building2 } from "lucide-react";
 
-export default function Header(): JSX.Element {
+export default function Header(): React.ReactElement {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
 

@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail } from "lucide-react";
 
-export default function ContactSection(): JSX.Element {
+export default function ContactSection(): React.ReactElement {
   return (
     <section id="contact" className="relative z-10 py-20 px-4">
       <div className="max-w-6xl mx-auto">

@@ -9,7 +9,7 @@ import ProofSection from "../organisms/ProofSection";
 import ContactSection from "../organisms/ContactSection";
 import Footer from "../organisms/Footer";
 
-export default function HomeTemplate(): JSX.Element {
+export default function HomeTemplate(): React.ReactElement {
   return (
     <div className="bg-black text-gray-300 min-h-screen">
       <BackgroundDotsCanvas />

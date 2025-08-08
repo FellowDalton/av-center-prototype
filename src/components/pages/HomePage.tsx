@@ -3,6 +3,6 @@
 import React from "react";
 import HomeTemplate from "../templates/HomeTemplate";
 
-export default function HomePage(): JSX.Element {
+export default function HomePage(): React.ReactElement {
   return <HomeTemplate />;
 }

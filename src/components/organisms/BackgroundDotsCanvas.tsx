@@ -13,7 +13,7 @@ interface Dot {
   currentRadius: number;
 }
 
-export default function BackgroundDotsCanvas(): JSX.Element {
+export default function BackgroundDotsCanvas(): React.ReactElement {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameId = useRef<number | null>(null);
 

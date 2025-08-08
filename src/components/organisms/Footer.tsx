@@ -9,7 +9,7 @@ import {
   Youtube as YoutubeIcon,
 } from "lucide-react";
 
-export default function Footer(): JSX.Element {
+export default function Footer(): React.ReactElement {
   return (
     <footer className="relative z-10 bg-gray-900/50 border-t border-gray-800 py-12 px-4">
       <div className="max-w-6xl mx-auto">

@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Award, Users, Building2 } from "lucide-react";
 
-export default function ProofSection(): JSX.Element {
+export default function ProofSection(): React.ReactElement {
   return (
     <section className="relative z-10 py-20 px-4 bg-gray-900/30">
       <div className="max-w-6xl mx-auto text-center">
