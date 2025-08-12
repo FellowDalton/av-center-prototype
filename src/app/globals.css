@@ -14,14 +14,112 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Typography families from Figma */
+  --font-sans: "Neulis Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI,
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Font sizes from Figma */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px; /* md Base */
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+  --text-5xl: 48px;
+  --text-6xl: 60px;
+  --text-7xl: 72px;
+
+  /* Neutral colors */
+  --color-neutral-white: #ffffff;
+  --color-neutral-black: #000000;
+
+  /* Emerald scale */
+  --color-emerald-50: #edfdf5;
+  --color-emerald-100: #d4fae5;
+  --color-emerald-200: #adf4d1;
+  --color-emerald-300: #73e9b6;
+  --color-emerald-400: #2dd494;
+  --color-emerald-500: #13bc7f;
+  --color-emerald-600: #099968;
+  --color-emerald-700: #0a7a56;
+  --color-emerald-800: #0e6046;
+  --color-emerald-900: #114f3b;
+  --color-emerald-950: #062c22;
+
+  /* Gray cold scale */
+  --color-gray-cold-50: #f9fafc;
+  --color-gray-cold-100: #f3f4f6;
+  --color-gray-cold-200: #e5e7eb;
+  --color-gray-cold-300: #d1d5dc;
+  --color-gray-cold-400: #9aa1ae;
+  --color-gray-cold-500: #6b7282;
+  --color-gray-cold-600: #4b5565;
+  --color-gray-cold-700: #374152;
+  --color-gray-cold-800: #1f2938;
+  --color-gray-cold-900: #111828;
+  --color-gray-cold-950: #030712;
+
+  /* Gray warm scale */
+  --color-gray-warm-50: #fafafa;
+  --color-gray-warm-100: #f5f5f5;
+  --color-gray-warm-200: #e7e5e4;
+  --color-gray-warm-300: #d6d3d1;
+  --color-gray-warm-400: #a6a09c;
+  --color-gray-warm-500: #78716c;
+  --color-gray-warm-600: #57534e;
+  --color-gray-warm-700: #44403c;
+  --color-gray-warm-800: #292524;
+  --color-gray-warm-900: #1c1917;
+  --color-gray-warm-950: #0b0a09;
+
+  /* Green scale */
+  --color-green-50: #f1fdf5;
+  --color-green-100: #dffce8;
+  --color-green-200: #bff8d1;
+  --color-green-300: #8af1aa;
+  --color-green-400: #47df78;
+  --color-green-500: #26c858;
+  --color-green-600: #1aa644;
+  --color-green-700: #1b823a;
+  --color-green-800: #1c6633;
+  --color-green-900: #1b542d;
+  --color-green-950: #0a2e16;
+
+  /* Aliases */
+  --color-primary: var(--color-emerald-500);
+  --color-primary-foreground: var(--color-neutral-white);
+  --color-secondary: var(--color-gray-cold-700);
+  --color-secondary-foreground: var(--color-neutral-white);
+  --color-accent: var(--color-green-500);
+  --color-accent-foreground: var(--color-neutral-white);
+  --color-muted-100: var(--color-gray-cold-100);
+  --color-muted-200: var(--color-gray-cold-200);
+  --color-muted-300: var(--color-gray-cold-300);
+  --color-muted-400: var(--color-gray-cold-400);
+  --color-muted-500: var(--color-gray-cold-500);
+  --color-muted-600: var(--color-gray-cold-600);
+  --color-muted-700: var(--color-gray-cold-700);
+  --color-muted-800: var(--color-gray-cold-800);
+  --color-muted-900: var(--color-gray-cold-900);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    /* Dark aliases */
+    --color-primary: var(--color-emerald-400);
+    --color-primary-foreground: var(--color-neutral-black);
+    --color-secondary: var(--color-gray-cold-300);
+    --color-secondary-foreground: var(--color-neutral-black);
+    --color-accent: var(--color-green-400);
+    --color-accent-foreground: var(--color-neutral-black);
   }
 }
 
