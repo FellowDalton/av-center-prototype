@@ -11,7 +11,7 @@ import ContactSection from "../organisms/ContactSection";
 import Footer from "../organisms/Footer";
 import { NavBar } from "@/components/molecules/NavBar";
 import { Briefcase, FileText, Home, User } from "lucide-react";
-import { cn } from "@/components/utils/cn";
+import { cn } from "@/lib/utils/cn";
 
 export default function HomeTemplate(): React.ReactElement {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);

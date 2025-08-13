@@ -16,7 +16,7 @@ import {
   type Target,
   type TargetAndTransition,
 } from "framer-motion";
-import { cn } from "../utils/cn";
+import { cn } from "@/lib/utils/cn";
 
 export interface RotatingTextRef {
   next: () => void;

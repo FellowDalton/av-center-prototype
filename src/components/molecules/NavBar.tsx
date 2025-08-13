@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import { cn } from "@/components/utils/cn";
+import { cn } from "@/lib/utils/cn";
 
 export interface NavItem {
   name: string;
