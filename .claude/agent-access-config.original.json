@@ -1,0 +1,193 @@
+{
+  "version": "2.0.0",
+  "description": "Agent file access control configuration using block-list approach",
+  "agents": {
+    "parent": {
+      "name": "Main Claude Agent",
+      "description": "The primary Claude assistant with minimal restrictions",
+      "blocked": [],
+      "readOnly": []
+    },
+    "ui-agent": {
+      "name": "UI Agent",
+      "description": "Handles user interface components and styling",
+      "blocked": [
+        "src/db/**",
+        "src/auth/**",
+        "src/middleware/auth/**",
+        "src/server/**",
+        "src/endpoints/**",
+        "app/api/**",
+        "migrations/**",
+        "seeds/**",
+        ".env",
+        ".env.local",
+        ".env.production"
+      ],
+      "readOnly": [
+        "src/store/selectors/**",
+        "src/api/types/**",
+        "src/shared/**"
+      ]
+    },
+    "database-agent": {
+      "name": "Database Agent",
+      "description": "Manages database schema, migrations, and data persistence",
+      "blocked": [
+        "src/components/**",
+        "src/ui/**",
+        "src/auth/**",
+        "src/middleware/auth/**",
+        ".env",
+        ".env.local",
+        ".env.production"
+      ],
+      "readOnly": [
+        "src/api/types/**",
+        "src/shared/types/**",
+        ".env.example"
+      ]
+    },
+    "auth-agent": {
+      "name": "Authentication Agent",
+      "description": "Handles authentication and authorization",
+      "blocked": [
+        "src/components/**",
+        "src/ui/**",
+        "styles/**",
+        "public/**",
+        ".env",
+        ".env.local",
+        ".env.production"
+      ],
+      "readOnly": [
+        "src/api/types/**",
+        "src/shared/types/**",
+        "src/db/queries/**"
+      ]
+    },
+    "state-agent": {
+      "name": "State Management Agent",
+      "description": "Manages application state and data flow",
+      "blocked": [
+        "src/auth/**",
+        "src/middleware/auth/**",
+        "src/db/**",
+        "migrations/**",
+        ".env",
+        ".env.local",
+        ".env.production"
+      ],
+      "readOnly": [
+        "src/api/types/**",
+        "src/shared/types/**"
+      ]
+    },
+    "api-agent": {
+      "name": "API Agent",
+      "description": "Develops API endpoints and server logic",
+      "blocked": [
+        "src/components/**",
+        "src/ui/**",
+        "styles/**",
+        "public/**",
+        "src/auth/**",
+        ".env",
+        ".env.local",
+        ".env.production"
+      ],
+      "readOnly": [
+        "src/db/queries/**",
+        "src/store/types/**",
+        "src/shared/**"
+      ]
+    },
+    "sync-agent": {
+      "name": "Sync Agent",
+      "description": "Handles offline sync and data synchronization",
+      "blocked": [
+        "src/components/**",
+        "src/ui/**",
+        "src/auth/**",
+        "src/middleware/auth/**",
+        ".env",
+        ".env.local",
+        ".env.production"
+      ],
+      "readOnly": [
+        "src/api/types/**",
+        "src/store/types/**",
+        "src/shared/**"
+      ]
+    },
+    "pm-agent": {
+      "name": "Project Manager Agent",
+      "description": "Coordinates other agents and manages project tasks",
+      "blocked": [
+        "src/**",
+        "app/**",
+        ".env",
+        ".env.local",
+        ".env.production"
+      ],
+      "readOnly": []
+    },
+    "ui-agent-features": {
+      "name": "UI Features Agent",
+      "description": "Implements specific UI features and enhancements",
+      "blocked": [
+        "src/db/**",
+        "src/auth/**",
+        "src/middleware/auth/**",
+        "src/server/**",
+        "src/endpoints/**",
+        "app/api/**",
+        "migrations/**",
+        "seeds/**",
+        ".env",
+        ".env.local",
+        ".env.production"
+      ],
+      "readOnly": [
+        "src/store/selectors/**",
+        "src/api/types/**",
+        "src/shared/**"
+      ]
+    },
+    "spelling-correction-specialist": {
+      "name": "Spelling Correction Specialist",
+      "description": "Reviews and corrects spelling errors in documentation and code comments",
+      "blocked": [
+        "scripts/**",
+        ".claude/**",
+        ".env",
+        ".env.local",
+        ".env.production"
+      ],
+      "readOnly": []
+    }
+  },
+  "default": {
+    "description": "Default permissions for unspecified agents",
+    "blocked": [
+      ".claude/hooks/**"
+    ],
+    "readOnly": [
+      "README.md",
+      "CLAUDE.md",
+      "package.json",
+      "tsconfig.json",
+      ".gitignore"
+    ]
+  },
+  "globalDeny": {
+    "description": "Paths that should never be modified by any agent",
+    "paths": [
+      ".git/**",
+      "node_modules/**",
+      ".next/**",
+      "dist/**",
+      "build/**"
+    ]
+  }
+}

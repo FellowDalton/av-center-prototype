@@ -1,0 +1,139 @@
+# UI Agent - Task 8: Build Accordion Component
+
+## Task ID: 8-UI
+## Dependencies: 3-UI
+## Priority: Medium
+## Order: 7
+
+## Description
+Create an accessible accordion component with smooth height animations, keyboard navigation, and configurable single/multi-item expansion.
+
+## Subtasks
+
+### 8.1 Create Accordion Structure
+Create components/sections/AccordionSection.tsx:
+- [ ] Define main accordion container
+- [ ] Support title and multiple items
+- [ ] Implement flexible content structure
+- [ ] Add proper semantic HTML
+- [ ] Implement two-column layout (text left, accordion right)
+
+**Figma Text Content Structure:**
+```jsx
+// Left side text content from Figma
+<div style={{width: 478, flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', gap: 24, display: 'inline-flex'}}>
+  <div style={{alignSelf: 'stretch', justifyContent: 'flex-start', alignItems: 'center', gap: 8, display: 'inline-flex'}}>
+    <div style={{width: 4, height: 4, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 999}} />
+    <div style={{color: 'var(--Color-Neutral-White, white)', fontSize: 16, fontFamily: 'JetBrains Mono', fontWeight: '500', wordWrap: 'break-word'}}>Pre header</div>
+    <div style={{flex: '1 1 0', height: 0, outline: '0.50px var(--Color-Gray-cold-400, #9AA1AE) solid', outlineOffset: '-0.25px'}}></div>
+  </div>
+  <div style={{alignSelf: 'stretch', color: 'var(--Color-Neutral-White, white)', fontSize: 36, fontFamily: 'Neulis Sans', fontWeight: '400', wordWrap: 'break-word'}}>Overskrift hvor der beskrives mere specifikt om AV•Centers services og løsninger</div>
+  <div style={{alignSelf: 'stretch', color: 'var(--Color-Gray-cold-300, #D1D5DC)', fontSize: 16, fontFamily: 'Neulis Sans', fontWeight: '400', wordWrap: 'break-word'}}>Vi er én af Danmarks førende virksomheder indenfor salg, installation, service og udlejning af audiovisuelle (AV) installationer, og vi tilbyder dig en professionel og nærværende kontakt med dine ønsker i fokus.</div>
+</div>
+```
+
+**Text Section Implementation Notes:**
+- [ ] Convert to semantic HTML with proper heading hierarchy (h2 for main title)
+- [ ] Implement responsive layout with CSS Grid or Flexbox
+- [ ] Style "Pre header" section with emerald dot indicator and decorative line
+- [ ] Use custom CSS for font families (JetBrains Mono, Neulis Sans)
+- [ ] Ensure proper color scheme using CSS variables
+- [ ] Make layout responsive (stack vertically on mobile)
+
+### 8.2 Build Accordion Item Component
+Create components/ui/AccordionItem.tsx:
+```typescript
+interface AccordionItem {
+  id: string;
+  title: string;
+  content: string | ReactNode;
+  icon?: ReactNode;
+}
+```
+- [ ] Create expandable item component
+- [ ] Add smooth height animation
+- [ ] Implement icon rotation on expand
+- [ ] Handle dynamic content height
+
+**Figma Accordion Structure:**
+```jsx
+// Right side accordion component from Figma
+<div style={{width: 380, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 16, display: 'inline-flex'}}>
+  <div style={{alignSelf: 'stretch', height: 0, outline: '0.50px var(--Color-Gray-cold-400, #9AA1AE) solid', outlineOffset: '-0.25px'}}></div>
+  <div data-property-1="Variant2" style={{alignSelf: 'stretch', height: 24, position: 'relative', justifyContent: 'space-between', alignItems: 'flex-end', display: 'inline-flex'}}>
+    <div style={{color: 'var(--Color-Neutral-White, white)', fontSize: 16, fontFamily: 'JetBrains Mono', fontWeight: '400', wordWrap: 'break-word'}}>Overskrift 1</div>
+    <div data-animation="1" style={{width: 380, height: 24, left: 0, top: 0, position: 'absolute'}}>
+      <div style={{width: 2.40, height: 2.40, left: 366.80, top: 6, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 364.40, top: 3.60, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 371.60, top: 10.80, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 369.20, top: 13.20, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 366.80, top: 15.60, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 364.40, top: 18, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 369.20, top: 8.40, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+    </div>
+  </div>
+  <div style={{alignSelf: 'stretch', height: 0, outline: '0.50px var(--Color-Gray-cold-400, #9AA1AE) solid', outlineOffset: '-0.25px'}}></div>
+  {/* Pattern repeats for multiple accordion items */}
+</div>
+```
+
+**Accordion Implementation Notes:**
+- [ ] Create accordion with separator lines between items
+- [ ] Each item has title on left, animated dot pattern on right
+- [ ] Implement animated dots as expand/collapse indicator (data-animation="1")
+- [ ] Use JetBrains Mono font for accordion titles
+- [ ] Style separator lines with gray outline (0.5px solid)
+- [ ] Convert dot pattern to SVG or CSS-based animation
+- [ ] Animate dots on hover and expand/collapse state changes
+- [ ] Ensure proper spacing (16px gap between items)
+- [ ] Make accordion items clickable with proper button semantics
+
+### 8.3 Animation Implementation
+- [ ] Use Framer Motion for height animations
+- [ ] Add spring-based transitions
+- [ ] Prevent animation jank
+- [ ] Configure custom animation duration
+- [ ] Handle initial expanded state
+
+### 8.4 Keyboard Navigation
+- [ ] Arrow key navigation between items
+- [ ] Enter/Space to toggle expansion
+- [ ] Home/End key support
+- [ ] Tab navigation for accessibility
+- [ ] Focus management
+
+### 8.5 Accessibility Features
+- [ ] Add ARIA attributes (expanded, controls, labelledby)
+- [ ] Implement proper role attributes
+- [ ] Screen reader announcements
+- [ ] Focus indicators
+- [ ] High contrast mode support
+
+### 8.6 Configuration Options
+- [ ] Single vs multi-item expansion mode
+- [ ] Default expanded items
+- [ ] Custom animation timing
+- [ ] Lazy loading for content
+- [ ] Callback handlers for state changes
+
+## Validation Steps
+1. [ ] Smooth animations without jank
+2. [ ] Keyboard navigation works correctly
+3. [ ] Screen reader compatible
+4. [ ] Touch-friendly on mobile
+5. [ ] Configurable behavior works
+
+## Git Commit
+After completing all tasks:
+```bash
+npm run dev
+# Test accordion functionality and accessibility
+git add .
+git commit -m "feat: implement accessible accordion component with smooth animations and keyboard navigation"
+```
+
+## Notes
+- Common UI pattern that needs to be polished
+- Ensure content doesn't jump during animation
+- Test with various content lengths
+- Consider performance with many items

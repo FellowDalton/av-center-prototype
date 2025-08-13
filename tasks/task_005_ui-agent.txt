@@ -1,0 +1,84 @@
+# UI Agent - Task 5: Implement Cursor Follower Component
+
+## Task ID: 5-UI
+## Dependencies: 3-UI
+## Priority: High
+## Order: 4
+
+## Description
+Create an animated cursor follower component using Framer Motion that follows the mouse with smooth spring animations and adapts to interactive elements.
+
+## Subtasks
+
+### 5.1 Create Mouse Position Hook
+Create lib/hooks/useMousePosition.ts:
+```typescript
+export function useMousePosition() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  // Implementation
+  return mousePosition;
+}
+```
+- [x] Track mouse position with RAF for performance
+- [x] Add throttling to prevent excessive updates
+- [x] Handle touch devices appropriately
+- [x] Clean up event listeners on unmount
+
+### 5.2 Build CursorFollower Component
+Create components/animations/CursorFollower.tsx:
+- [x] Use Framer Motion for spring animations
+- [x] Implement smooth lag/following behavior
+- [x] Add mix-blend-mode for visual effects
+- [x] Configure z-index management
+- [x] Hide on touch/mobile devices
+
+### 5.3 Adaptive Behavior Implementation
+- [x] Auto-grow on hover over links/buttons
+- [x] Shrink effect on mouse press
+- [x] Transform to text selector on selectable text
+- [x] Add configurable spring config
+- [x] Implement adaptive size prop
+
+### 5.4 Performance Optimization
+- [x] Use hardware-accelerated transforms only
+- [x] Implement 'use client' directive
+- [x] Batch DOM updates
+- [x] Limit to 120fps animations
+- [x] Add performance monitoring
+
+### 5.5 Component Props Interface
+```typescript
+interface CursorFollowerProps {
+  size?: number;
+  color?: string;
+  blendMode?: 'difference' | 'multiply' | 'screen';
+  springConfig?: SpringOptions;
+  adaptiveSize?: boolean;
+  hideOnTouch?: boolean;
+}
+```
+- [x] Define TypeScript interface
+- [x] Add prop validation
+- [x] Set sensible defaults
+- [x] Document prop usage
+
+## Validation Steps
+1. [x] Cursor follows mouse smoothly at 60-120fps
+2. [x] No performance impact (< 10ms paint time)
+3. [x] Properly hidden on mobile devices
+4. [x] Adaptive behavior works on interactive elements
+
+## Git Commit
+After completing all tasks:
+```bash
+npm run dev
+# Test cursor follower behavior
+git add .
+git commit -m "feat: implement cursor follower component with adaptive behavior and spring animations"
+```
+
+## Notes
+- Critical for visual polish of the prototype
+- Must not interfere with clickable elements
+- Consider accessibility - should not block screen readers
+- Test extensively on Safari for performance

@@ -1,0 +1,107 @@
+{
+  "version": "1.0.0",
+  "description": "Defines the hierarchy of main agents and their allowed subagents",
+  "hierarchy": {
+    "ui-agent": {
+      "id": "ui-agent",
+      "name": "UI Agent",
+      "description": "Frontend development agent",
+      "subagents": [
+        "react-javascript-expert",
+        "css-scss-expert",
+        "html-wcag-expert",
+        "framer-motion-specialist",
+        "figma-integration-specialist",
+        "performance-optimization-specialist",
+        "ui-test-specification",
+        "code-reviewer",
+        "debugger"
+      ]
+    },
+    "ui-agent-features": {
+      "id": "ui-agent-features",
+      "name": "UI Features Agent",
+      "description": "UI feature implementation agent",
+      "subagents": [
+        "react-javascript-expert",
+        "css-scss-expert",
+        "html-wcag-expert",
+        "framer-motion-specialist",
+        "figma-integration-specialist",
+        "performance-optimization-specialist",
+        "ui-test-specification",
+        "code-reviewer",
+        "debugger"
+      ]
+    },
+    "database-agent": {
+      "id": "database-agent",
+      "name": "Database Agent",
+      "description": "Database and persistence management",
+      "subagents": [
+        "database-persistence-specialist",
+        "code-reviewer",
+        "debugger"
+      ]
+    },
+    "api-agent": {
+      "id": "api-agent",
+      "name": "API Agent",
+      "description": "API and backend development",
+      "subagents": [
+        "api-developer",
+        "external-integration-specialist",
+        "code-reviewer",
+        "debugger"
+      ]
+    },
+    "auth-agent": {
+      "id": "auth-agent",
+      "name": "Authentication Agent",
+      "description": "Authentication and security",
+      "subagents": [
+        "auth-security-specialist",
+        "code-reviewer",
+        "debugger"
+      ]
+    },
+    "state-agent": {
+      "id": "state-agent",
+      "name": "State Management Agent",
+      "description": "Application state management",
+      "subagents": [
+        "state-management-specialist",
+        "code-reviewer",
+        "debugger"
+      ]
+    },
+    "sync-agent": {
+      "id": "sync-agent",
+      "name": "Sync Agent",
+      "description": "Offline sync and data synchronization",
+      "subagents": [
+        "offline-sync-specialist",
+        "realtime-collaboration-specialist",
+        "code-reviewer",
+        "debugger"
+      ]
+    },
+    "pm-agent": {
+      "id": "pm-agent",
+      "name": "Project Manager Agent",
+      "description": "Project coordination and management",
+      "subagents": [
+        "meta-agent",
+        "spelling-correction-specialist"
+      ]
+    }
+  },
+  "shared_subagents": {
+    "description": "Subagents that can be useful across multiple main agents",
+    "list": [
+      "code-reviewer",
+      "debugger",
+      "code-refactoring-expert"
+    ]
+  }
+}

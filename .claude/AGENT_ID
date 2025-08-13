@@ -1,0 +1,4 @@
+# This file indicates the main agent for this worktree
+# Set this environment variable before running Claude:
+# export CLAUDE_AGENT_ID="ui-agent"
+ui-agent
