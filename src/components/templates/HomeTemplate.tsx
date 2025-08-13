@@ -51,11 +51,6 @@ export default function HomeTemplate(): React.ReactElement {
         </div>
       </div>
       <ScrollHero />
-      <HeroSection />
-      <FeaturesSection />
-      <ProofSection />
-      <ContactSection />
-      <Footer />
     </div>
   );
 }
