@@ -1,0 +1,151 @@
+# UI Agent - Task 11: Build Footer Component
+
+## Task ID: 11-UI
+## Dependencies: 3-UI
+## Priority: Medium
+## Order: 10
+
+## Description
+Create a comprehensive footer component with multi-column layout, newsletter signup, social links, and responsive design.
+
+## Subtasks
+
+### 11.1 Create Footer Structure
+Create components/layout/Footer/index.tsx:
+
+**Figma Footer Structure:**
+```jsx
+// Footer component with emerald background and multi-column layout
+<div style={{width: 1440, height: 700, position: 'relative', background: 'var(--Color-Emerald-950, #062C22)', overflow: 'hidden'}}>
+  {/* Company logo */}
+  <div style={{width: 208, height: 23, left: 75, top: 121, position: 'absolute', overflow: 'hidden'}}>
+    <div style={{width: 26.85, height: 22.24, left: -0.01, top: 0.51, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+    <div style={{width: 25.61, height: 22.26, left: 24.70, top: 0.47, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+    <div style={{width: 19.20, height: 23, left: 64.50, top: 0, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+    <div style={{width: 8.72, height: 8.84, left: 51.84, top: 8.08, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+    <div style={{width: 19.29, height: 22.32, left: 163.14, top: 0.13, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+    <div style={{width: 22.53, height: 22.24, left: 185.47, top: 0.11, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+    <div style={{width: 19.28, height: 22.32, left: 87.59, top: 0.32, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+    <div style={{width: 24, height: 22.28, left: 110.12, top: 0.26, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+    <div style={{width: 23.30, height: 22.25, left: 137.09, top: 0.18, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+  </div>
+  
+  {/* Main footer content with call-to-action */}
+  <div style={{width: 597, left: 770, top: 103, position: 'absolute'}}>
+    <span style="color: 'white', fontSize: 36, fontFamily: 'Neulis Sans', fontWeight: '400', wordWrap: 'break-word'">Lad os </span>
+    <span style="color: 'white', fontSize: 36, fontFamily: 'Neulis Sans', fontWeight: '400', textDecoration: 'underline', wordWrap: 'break-word'">tage en snak</span>
+    <span style="color: 'white', fontSize: 36, fontFamily: 'Neulis Sans', fontWeight: '400', wordWrap: 'break-word'"> ... lorem ipsum noget med AV-løsninger. Du kan også find os på </span>
+    <span style="color: 'white', fontSize: 36, fontFamily: 'Neulis Sans', fontWeight: '400', textDecoration: 'underline', wordWrap: 'break-word'">Facebook</span>
+    <span style="color: 'white', fontSize: 36, fontFamily: 'Neulis Sans', fontWeight: '400', wordWrap: 'break-word'"> eller </span>
+    <span style="color: 'white', fontSize: 36, fontFamily: 'Neulis Sans', fontWeight: '400', textDecoration: 'underline', wordWrap: 'break-word'">LinkedIn</span>
+    <span style="color: 'white', fontSize: 36, fontFamily: 'Neulis Sans', fontWeight: '400', wordWrap: 'break-word'">.</span>
+  </div>
+  
+  {/* Location labels */}
+  <div style={{left: 696, top: 433, position: 'absolute', color: 'white', fontSize: 18, fontFamily: 'JetBrains Mono', fontWeight: '400', wordWrap: 'break-word'}}>København</div>
+  <div style={{left: 889, top: 433, position: 'absolute', color: 'white', fontSize: 18, fontFamily: 'JetBrains Mono', fontWeight: '400', wordWrap: 'break-word'}}>Odense</div>
+  
+  {/* Newsletter signup section */}
+  <div style={{width: 334, height: 158, left: 66, top: 398, position: 'absolute'}}>
+    <div style={{width: 334, left: 0, top: 33, position: 'absolute', color: 'white', fontSize: 24, fontFamily: 'Neulis Sans', fontWeight: '400', wordWrap: 'break-word'}}>Hold dig opdateret på AV-nyheder og events.</div>
+    <div style={{left: 0, top: 0, position: 'absolute', color: 'white', fontSize: 18, fontFamily: 'JetBrains Mono', fontWeight: '500', wordWrap: 'break-word'}}>Nyhedsbrev</div>
+    <div style={{left: 0, top: 136, position: 'absolute', color: 'var(--Color-Emerald-200, #ADF4D1)', fontSize: 14, fontFamily: 'JetBrains Mono', fontWeight: '400', wordWrap: 'break-word'}}>Skriv din e-mail</div>
+    <div data-animation="1" style={{width: 64, height: 20, left: 221, top: 134, position: 'absolute'}}>
+      <div style={{width: 2, height: 2, left: 55, top: 5, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 53, top: 3, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 59, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 46, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 49, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 52, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 55, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 57, top: 11, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 55, top: 13, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 53, top: 15, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 57, top: 7, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+    </div>
+    <div style={{width: 288, height: 0, left: 0, top: 158, position: 'absolute', outline: '1px var(--Color-Emerald-100, #D4FAE5) solid', outlineOffset: '-0.50px'}}></div>
+  </div>
+</div>
+```
+
+**Footer Implementation Notes:**
+- [ ] Use deep emerald background color (`--Color-Emerald-950, #062C22`)
+- [ ] Convert absolute positioning to modern CSS Grid or Flexbox layout
+- [ ] Maintain full-width footer (1440px width, 700px height)
+- [ ] Convert logo shapes to proper SVG or image component
+- [ ] Implement proper semantic HTML structure with `<footer>` element
+- [ ] Create responsive grid layout that stacks on mobile
+- [ ] Use white text color for main content
+- [ ] Apply Neulis Sans font for main content (36px)
+- [ ] Apply JetBrains Mono font for labels (18px for locations, 14px for input)
+- [ ] Make underlined text clickable links ("tage en snak", "Facebook", "LinkedIn")
+- [ ] Convert newsletter input placeholder to functional form field
+- [ ] Add animated dot pattern for newsletter signup button (data-animation="1")
+- [ ] Style input underline with emerald color (`--Color-Emerald-100, #D4FAE5`)
+- [ ] Ensure proper spacing and alignment for all elements
+- [ ] Implement responsive behavior for smaller screens
+
+### 11.2 Company Information Section
+- [ ] Company logo and tagline
+- [ ] Brief description
+- [ ] Contact information
+- [ ] Copyright notice
+- [ ] Dynamic year update
+
+### 11.3 Build Newsletter Component
+Create components/layout/Footer/Newsletter.tsx:
+- [ ] Email input field
+- [ ] Submit button with loading state
+- [ ] Form validation
+- [ ] Success/error messages
+- [ ] GDPR compliance checkbox
+
+### 11.4 Quick Links Navigation
+- [ ] Product/service links
+- [ ] Resource links
+- [ ] Support links
+- [ ] Legal links (Privacy, Terms)
+- [ ] Sitemap link
+
+### 11.5 Social Media Links
+- [ ] Icon buttons for social platforms
+- [ ] Hover animations
+- [ ] External link indicators
+- [ ] Accessible labels
+- [ ] Target="_blank" with rel="noopener"
+
+### 11.6 Back-to-Top Button
+- [ ] Floating button appearance on scroll
+- [ ] Smooth scroll to top
+- [ ] Fade in/out animation
+- [ ] Accessible implementation
+- [ ] Position management
+
+### 11.7 Form Handling
+- [ ] Client-side validation
+- [ ] Email format validation
+- [ ] Loading states
+- [ ] Error handling
+- [ ] Success feedback
+
+## Validation Steps
+1. [ ] Newsletter form validates correctly
+2. [ ] Social icons have hover effects
+3. [ ] Responsive layout works on mobile
+4. [ ] Back-to-top scrolls smoothly
+5. [ ] All links are functional
+
+## Git Commit
+After completing all tasks:
+```bash
+npm run dev
+# Test footer functionality and responsiveness
+git add .
+git commit -m "feat: implement footer with newsletter, social links, and responsive layout"
+```
+
+## Notes
+- Footer provides important navigation and conversion opportunities
+- Ensure email collection complies with regulations
+- Test form submission error states
+- Consider adding a footer sitemap for SEO

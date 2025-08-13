@@ -1,0 +1,83 @@
+# UI Agent - Task 13: Performance Optimization
+
+## Task ID: 13-UI
+## Dependencies: All UI tasks (2-11)
+## Priority: High
+## Order: 12
+
+## Description
+Optimize the application for performance, ensuring 60fps animations, fast loading times, and excellent Core Web Vitals scores.
+
+## Subtasks
+
+### 13.1 Animation Performance
+- [ ] Profile all animations with Chrome DevTools
+- [ ] Ensure 60-120fps on all animations
+- [ ] Use GPU acceleration where possible
+- [ ] Implement will-change hints carefully
+- [ ] Add performance monitoring
+
+### 13.2 Safari-Specific Optimizations
+- [ ] Test scroll animations on Safari
+- [ ] Verify backdrop-filter support
+- [ ] Check spring animation performance
+- [ ] Test touch gestures on iOS Safari
+- [ ] Fix Safari-specific rendering issues
+
+### 13.3 Image Optimization
+- [ ] Configure Next.js Image properly
+- [ ] Implement progressive loading
+- [ ] Add blur placeholders
+- [ ] Optimize image formats (WebP, AVIF)
+- [ ] Set proper cache headers
+
+### 13.4 Code Splitting
+- [ ] Implement dynamic imports
+- [ ] Lazy load heavy components
+- [ ] Split vendor bundles
+- [ ] Analyze bundle size
+- [ ] Remove unused code
+
+### 13.5 Reduce Motion Support
+- [ ] Detect prefers-reduced-motion
+- [ ] Provide animation alternatives
+- [ ] Test with reduced motion enabled
+- [ ] Ensure functionality without animations
+- [ ] Document accessibility features
+
+### 13.6 Core Web Vitals
+- [ ] Optimize Largest Contentful Paint (< 2.5s)
+- [ ] Minimize First Input Delay (< 100ms)
+- [ ] Eliminate Cumulative Layout Shift (< 0.1)
+- [ ] Improve First Contentful Paint (< 1.8s)
+- [ ] Reduce Time to Interactive (< 3.8s)
+
+### 13.7 Performance Monitoring
+- [ ] Add performance marks
+- [ ] Implement RUM tracking
+- [ ] Set up performance budgets
+- [ ] Create performance dashboard
+- [ ] Document performance targets
+
+## Validation Steps
+1. [ ] Lighthouse score > 90 all categories
+2. [ ] 60fps animations consistently
+3. [ ] < 3s page load time
+4. [ ] Safari performs smoothly
+5. [ ] Bundle size < 200KB gzipped
+
+## Git Commit
+After completing all tasks:
+```bash
+npm run build
+npm run analyze  # Check bundle size
+# Run Lighthouse audit
+git add .
+git commit -m "feat: optimize performance with code splitting, image optimization, and Safari fixes"
+```
+
+## Notes
+- Performance is critical for user experience
+- Test on real devices, not just dev machines
+- Consider network throttling in tests
+- Monitor performance post-deployment

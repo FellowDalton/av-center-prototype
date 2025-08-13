@@ -1,0 +1,138 @@
+# UI Agent - Task 6: Build Header Component with Navigation
+
+## Task ID: 6-UI
+## Dependencies: 3-UI, 5-UI
+## Priority: High
+## Order: 5
+
+## Description
+Create a responsive header component with logo, navigation menu, and chat button, featuring sticky positioning and smooth transitions.
+
+## Subtasks
+
+### 6.1 Create Header Layout Structure
+Create components/layout/Header/index.tsx:
+- [ ] Implement three-column layout (Logo | Nav | Chat)
+- [ ] Add sticky positioning with backdrop-blur
+- [ ] Configure height reduction on scroll
+- [ ] Implement transparent to solid background transition
+
+### 6.2 Build Logo Component
+Create components/layout/Header/Logo.tsx:
+- [ ] Create clickable logo linking to home
+- [ ] Add hover animation with Framer Motion
+- [ ] Support SVG or optimized image
+- [ ] Implement smooth scale transition
+
+**Figma Component Structure:**
+```jsx
+// Logo component structure from Figma
+<div style={{width: 128.28, height: 14, position: 'relative', overflow: 'hidden'}}>
+  <div style={{width: 16.56, height: 13.54, left: 0, top: 0.31, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+  <div style={{width: 15.79, height: 13.55, left: 15.23, top: 0.29, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+  <div style={{width: 11.84, height: 14, left: 39.78, top: 0, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+  <div style={{width: 5.38, height: 5.38, left: 31.97, top: 4.92, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+  <div style={{width: 11.90, height: 13.58, left: 100.61, top: 0.08, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+  <div style={{width: 13.89, height: 13.54, left: 114.38, top: 0.07, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+  <div style={{width: 11.89, height: 13.58, left: 54.02, top: 0.19, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+  <div style={{width: 14.80, height: 13.56, left: 67.92, top: 0.16, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+  <div style={{width: 14.37, height: 13.54, left: 84.55, top: 0.11, position: 'absolute', background: 'var(--Color-Neutral-White, white)'}} />
+</div>
+```
+
+**Implementation Notes:**
+- [ ] Convert Figma component to semantic JSX with proper Tailwind classes
+- [ ] Replace absolute positioning with CSS Grid or Flexbox layout
+- [ ] Ensure logo maintains aspect ratio (128.28 x 14px)
+- [ ] Make logo responsive while preserving proportions
+- [ ] Use CSS variables for color theming (--Color-Neutral-White)
+
+### 6.3 Implement Navigation Menu
+**Status: Already created in frontend**
+Review and integrate existing components/layout/Header/NavMenu.tsx:
+- [x] Horizontal navigation for desktop *(already implemented)*
+- [x] Hamburger menu for mobile *(already implemented)*
+- [x] Smooth scroll to page sections *(already implemented)*
+- [x] Active state indicators *(already implemented)*
+- [x] Keyboard navigation support *(already implemented)*
+- [ ] Verify integration with new header structure
+- [ ] Test existing functionality with header scroll behavior
+- [ ] Ensure styling consistency with header component
+
+### 6.4 Create Chat Button
+Create components/layout/Header/ChatButton.tsx:
+- [ ] Animated pulse/bounce effect
+- [ ] Tooltip on hover
+- [ ] Modal or slide-out panel trigger
+- [ ] Accessible button implementation
+
+**Figma Component Structure:**
+```jsx
+// Chat button component from Figma
+<div style={{padding: 14.86, position: 'relative', background: 'rgba(55, 65, 82, 0.50)', borderRadius: 927.64, backdropFilter: 'blur(5.57px)', justifyContent: 'flex-start', alignItems: 'center', display: 'inline-flex'}}>
+  <div style={{width: 22.29, height: 22.29, position: 'relative'}}>
+    <div style={{width: 2.23, height: 2.23, left: 15.60, top: 3.34, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 12.26, top: 3.34, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 17.83, top: 8.91, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 3.34, top: 5.57, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 5.57, top: 3.34, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 8.91, top: 3.34, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 17.83, top: 12.26, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 15.60, top: 14.49, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 12.26, top: 14.49, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 8.91, top: 14.49, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 6.69, top: 16.71, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 3.34, top: 8.91, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 3.34, top: 12.26, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 3.34, top: 15.60, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 3.34, top: 18.94, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+    <div style={{width: 2.23, height: 2.23, left: 17.83, top: 5.57, position: 'absolute', background: 'var(--Color-Neutral-White, white)', borderRadius: 9999}} />
+  </div>
+  <div style={{width: 11.14, height: 11.14, left: 36.21, top: 0.93, position: 'absolute', background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 927.64}} />
+</div>
+```
+
+**Implementation Notes:**
+- [ ] Convert to button element with proper semantic structure
+- [ ] Replace absolute positioning with SVG icon or CSS Grid layout for chat dots
+- [ ] Implement backdrop-blur effect using Tailwind CSS (backdrop-blur-sm)
+- [ ] Use Tailwind classes for rounded background (bg-gray-600/50 rounded-full)
+- [ ] Green notification dot positioned as badge (absolute top-0 right-0)
+- [ ] Ensure proper hover and focus states for accessibility
+- [ ] Add proper ARIA labels for screen readers
+- [ ] Animate notification dot with pulse effect using Framer Motion
+
+### 6.5 Add Scroll Behavior Hook
+Create lib/hooks/useScrollPosition.ts:
+- [ ] Track scroll position
+- [ ] Determine scroll direction
+- [ ] Throttle scroll events
+- [ ] Calculate header visibility state
+
+### 6.6 Mobile Responsive Implementation
+- [ ] Create mobile hamburger menu
+- [ ] Slide-out navigation drawer
+- [ ] Touch-friendly tap targets
+- [ ] Proper breakpoint handling
+
+## Validation Steps
+1. [ ] Header sticks to top on scroll
+2. [ ] Smooth transitions on all animations
+3. [ ] Mobile menu works on all devices
+4. [ ] Keyboard navigation functional
+5. [ ] < 100ms interaction response time
+
+## Git Commit
+After completing all tasks:
+```bash
+npm run dev
+# Test header behavior and responsiveness
+git add .
+git commit -m "feat: implement responsive header with navigation, logo, and chat button"
+```
+
+## Notes
+- Ensure accessibility with proper ARIA labels
+- Test backdrop-blur on Safari
+- Consider reduced motion preferences
+- Header is critical for site navigation UX

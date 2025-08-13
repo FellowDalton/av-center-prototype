@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Building2 } from "lucide-react";
-import { cn } from "../utils/cn";
+import { cn } from "@/lib/utils/cn";
 
 export interface DisplayCardProps {
   className?: string;

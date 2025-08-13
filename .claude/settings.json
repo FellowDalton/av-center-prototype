@@ -1,0 +1,131 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(git worktree:*)",
+      "Bash(git branch:*)",
+      "Bash(ls:*)",
+      "Bash(npm install:*)",
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(git worktree:*)",
+      "Bash(git branch:*)",
+      "Bash(ls:*)",
+      "Bash(tmux list-windows:*)",
+      "Bash(git -C ../frontend worktree remove --force ../frontend/worktrees/sync-agent-20250721-222729)",
+      "Bash(git -C ../frontend worktree remove --force ../frontend/worktrees/ui-agent-20250721-222711)",
+      "Bash(git -C ../frontend worktree remove --force ../frontend/worktrees/ui-agent-features-20250721-222726)",
+      "Bash(git -C ../frontend worktree prune)",
+      "Bash(git -C ../frontend worktree list)",
+      "Bash(./scripts/force-remove-all-worktrees.zsh:*)",
+      "Bash(tmux kill-session:*)",
+      "Bash(true)",
+      "Bash(./scripts/distribute-agents-dynamic.zsh:*)",
+      "Bash(jq:*)",
+      "Bash(git -C ../frontend status)"
+    ],
+    "deny": []
+  },
+  "enabledMcpjsonServers": ["supabase", "context7", "playwright"],
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Code modified - consider running: claude-agents code-reviewer' >&2"
+          },
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/prettier_format.py"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/post_tool_use.py"
+          }
+        ]
+      }
+    ],
+    /* "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/pre_tool_use_enhanced.py"
+          }
+        ]
+      }
+    ], */
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/notification.py --notify"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/stop.py --chat"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/subagent_stop.py"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/user_prompt_submit.py --log-only"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/pre_compact.py"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/session_start.py"
+          }
+        ]
+      }
+    ]
+  }
+}

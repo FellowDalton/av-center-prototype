@@ -1,0 +1,82 @@
+# UI Agent - Task 7: Create Hero Section
+
+## Task ID: 7-UI
+## Dependencies: 3-UI, 5-UI
+## Priority: High
+## Order: 6
+
+## Description
+Build and refine the hero section with large animated typography, background effects, and call-to-action buttons with smooth Framer Motion animations.
+
+## Subtasks
+
+### 7.1 Create Hero Component Structure
+Create components/sections/Hero.tsx:
+- [ ] Set up responsive container layout
+- [ ] Implement full viewport height design
+- [ ] Add proper semantic HTML structure
+- [ ] Configure server/client component split
+
+### 7.2 Implement Animated Typography
+- [ ] Large heading with staggered animation
+- [ ] Subtitle with fade-in effect
+- [ ] Use Framer Motion text animations
+- [ ] Optimize typography scale for all devices
+- [ ] Add split-text animation capability
+
+### 7.3 Background Implementation
+- [ ] Add gradient or image background
+- [ ] Implement parallax scroll effect
+- [ ] Configure background blur/overlay
+- [ ] Ensure performance with lazy loading
+- [ ] Add video background option
+
+### 7.4 CTA Buttons
+- [ ] Create primary and secondary CTA buttons
+- [ ] Add hover state animations
+- [ ] Implement press state feedback
+- [ ] Configure smooth transitions
+- [ ] Add ripple effect on click
+
+### 7.5 Animation Sequencing
+Create lib/utils/animations.ts:
+```typescript
+export const heroAnimations = {
+  container: { /* stagger children */ },
+  title: { /* fade up animation */ },
+  subtitle: { /* fade in animation */ },
+  buttons: { /* scale animation */ }
+}
+```
+- [ ] Define animation variants
+- [ ] Set up stagger delays
+- [ ] Configure spring animations
+- [ ] Add viewport trigger
+
+### 7.6 Loading State Management
+- [ ] Implement skeleton loading
+- [ ] Add progressive image loading
+- [ ] Handle animation on mount
+- [ ] Prevent layout shift
+
+## Validation Steps
+1. [ ] Animations run smoothly at 60fps
+2. [ ] Typography scales properly on all devices
+3. [ ] CTAs are accessible and clickable
+4. [ ] No layout shift during load
+5. [ ] Performs well on Safari
+
+## Git Commit
+After completing all tasks:
+```bash
+npm run dev
+# Test hero section animations and responsiveness
+git add .
+git commit -m "feat: create hero section with animated typography and CTA buttons"
+```
+
+## Notes
+- Hero sets the tone for the entire site
+- Critical for first impression and LCP
+- Ensure text remains readable over background
+- Test on various viewport sizes
