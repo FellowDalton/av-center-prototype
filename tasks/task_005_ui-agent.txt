@@ -19,32 +19,32 @@ export function useMousePosition() {
   return mousePosition;
 }
 ```
-- [x] Track mouse position with RAF for performance
-- [x] Add throttling to prevent excessive updates
-- [x] Handle touch devices appropriately
-- [x] Clean up event listeners on unmount
+- [ ] Track mouse position with RAF for performance
+- [ ] Add throttling to prevent excessive updates
+- [ ] Handle touch devices appropriately
+- [ ] Clean up event listeners on unmount
 
 ### 5.2 Build CursorFollower Component
 Create components/animations/CursorFollower.tsx:
-- [x] Use Framer Motion for spring animations
-- [x] Implement smooth lag/following behavior
-- [x] Add mix-blend-mode for visual effects
-- [x] Configure z-index management
-- [x] Hide on touch/mobile devices
+- [ ] Use Framer Motion for spring animations
+- [ ] Implement smooth lag/following behavior
+- [ ] Add mix-blend-mode for visual effects
+- [ ] Configure z-index management
+- [ ] Hide on touch/mobile devices
 
 ### 5.3 Adaptive Behavior Implementation
-- [x] Auto-grow on hover over links/buttons
-- [x] Shrink effect on mouse press
-- [x] Transform to text selector on selectable text
-- [x] Add configurable spring config
-- [x] Implement adaptive size prop
+- [ ] Auto-grow on hover over links/buttons
+- [ ] Shrink effect on mouse press
+- [ ] Transform to text selector on selectable text
+- [ ] Add configurable spring config
+- [ ] Implement adaptive size prop
 
 ### 5.4 Performance Optimization
-- [x] Use hardware-accelerated transforms only
-- [x] Implement 'use client' directive
-- [x] Batch DOM updates
-- [x] Limit to 120fps animations
-- [x] Add performance monitoring
+- [ ] Use hardware-accelerated transforms only
+- [ ] Implement 'use client' directive
+- [ ] Batch DOM updates
+- [ ] Limit to 120fps animations
+- [ ] Add performance monitoring
 
 ### 5.5 Component Props Interface
 ```typescript
@@ -57,16 +57,16 @@ interface CursorFollowerProps {
   hideOnTouch?: boolean;
 }
 ```
-- [x] Define TypeScript interface
-- [x] Add prop validation
-- [x] Set sensible defaults
-- [x] Document prop usage
+- [ ] Define TypeScript interface
+- [ ] Add prop validation
+- [ ] Set sensible defaults
+- [ ] Document prop usage
 
 ## Validation Steps
-1. [x] Cursor follows mouse smoothly at 60-120fps
-2. [x] No performance impact (< 10ms paint time)
-3. [x] Properly hidden on mobile devices
-4. [x] Adaptive behavior works on interactive elements
+1. [ ] Cursor follows mouse smoothly at 60-120fps
+2. [ ] No performance impact (< 10ms paint time)
+3. [ ] Properly hidden on mobile devices
+4. [ ] Adaptive behavior works on interactive elements
 
 ## Git Commit
 After completing all tasks:

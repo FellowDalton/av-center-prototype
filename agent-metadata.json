@@ -3,8 +3,8 @@
   "display_name": "UI Agent",
   "description": "Frontend development agent",
   "branch": "agent/ui-agent",
-  "created_at": "2025-08-13T09:56:34Z",
-  "worktree_path": "/Users/dalton/projects/av-center-prototype/claude-coordinator/../frontend/worktrees/ui-agent-20250813-115634",
+  "created_at": "2025-08-13T11:13:55Z",
+  "worktree_path": "/Users/dalton/projects/av-center-prototype/claude-coordinator/../frontend/worktrees/ui-agent-20250813-131355",
   "tmux_session": "agent-ui-agent",
   "task_count": 8,
   "subagents": [

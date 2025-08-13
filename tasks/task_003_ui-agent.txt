@@ -12,11 +12,11 @@ Set up Tailwind CSS v3.4+ with custom theme configuration, design tokens, and an
 
 ### 3.1 Configure Tailwind Theme
 Update tailwind.config.ts:
-- [x] Define custom color palette (primary, neutral, semantic colors)
-- [x] Set up typography scale (xs through 5xl)
-- [x] Configure spacing system (base unit: 4px)
-- [x] Define responsive breakpoints (sm, md, lg, xl, 2xl)
-- [x] Add custom animation utilities
+- [ ] Define custom color palette (primary, neutral, semantic colors)
+- [ ] Set up typography scale (xs through 5xl)
+- [ ] Configure spacing system (base unit: 4px)
+- [ ] Define responsive breakpoints (sm, md, lg, xl, 2xl)
+- [ ] Add custom animation utilities
 
 ### 3.2 Create Design Tokens
 Create lib/design-tokens.ts:
@@ -30,26 +30,26 @@ export const colors = {
   // ... rest of palette
 }
 ```
-- [x] Color tokens defined
-- [x] Spacing tokens created
-- [x] Typography tokens added
-- [x] Animation duration tokens defined
+- [ ] Color tokens defined
+- [ ] Spacing tokens created
+- [ ] Typography tokens added
+- [ ] Animation duration tokens defined
 
 ### 3.3 Global CSS Setup
 Update app/globals.css:
-- [x] Import Tailwind directives
-- [x] Define CSS custom properties for design tokens
-- [x] Add custom @theme animations
-- [x] Configure font imports
-- [x] Add utility classes for common patterns
+- [ ] Import Tailwind directives
+- [ ] Define CSS custom properties for design tokens
+- [ ] Add custom @theme animations
+- [ ] Configure font imports
+- [ ] Add utility classes for common patterns
 
 ### 3.4 Animation Utilities
 Create custom Tailwind animations:
-- [x] Pulse animation
-- [x] Wiggle animation
-- [x] Slide animations (up, down, left, right)
-- [x] Fade animations
-- [x] Spring-based animations
+- [ ] Pulse animation
+- [ ] Wiggle animation
+- [ ] Slide animations (up, down, left, right)
+- [ ] Fade animations
+- [ ] Spring-based animations
 
 ### 3.5 Create Utility Functions
 Create lib/utils/cn.ts:
@@ -61,14 +61,14 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 ```
-- [x] cn utility function created
-- [x] Type definitions added
+- [ ] cn utility function created
+- [ ] Type definitions added
 
 ## Validation Steps
-1. [x] Tailwind IntelliSense works in IDE
-2. [x] Custom colors appear in autocomplete
-3. [x] Animations work when applied to elements
-4. [x] Design tokens are accessible throughout app
+1. [ ] Tailwind IntelliSense works in IDE
+2. [ ] Custom colors appear in autocomplete
+3. [ ] Animations work when applied to elements
+4. [ ] Design tokens are accessible throughout app
 
 ## Git Commit
 After completing all tasks:

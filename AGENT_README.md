@@ -5,7 +5,7 @@ This is an isolated worktree for the **ui-agent** agent.
 ## Configuration
 
 - **Branch**: `agent/ui-agent`
-- **Created**: Wed Aug 13 11:56:34 CEST 2025
+- **Created**: Wed Aug 13 13:13:55 CEST 2025
 - **Description**: Frontend development agent
 
 ## Subagents Included
@@ -26,7 +26,7 @@ The following subagents are available for this agent:
 To launch Claude Code in this agent worktree:
 
 ```bash
-cd /Users/dalton/projects/av-center-prototype/claude-coordinator/../frontend/worktrees/ui-agent-20250813-115634
+cd /Users/dalton/projects/av-center-prototype/claude-coordinator/../frontend/worktrees/ui-agent-20250813-131355
 export CLAUDE_AGENT_ID="ui-agent"
 claude --model sonnet
 ```
