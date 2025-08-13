@@ -12,6 +12,7 @@ import Footer from "../organisms/Footer";
 import { NavBar } from "@/components/molecules/NavBar";
 import { Briefcase, FileText, Home, User } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
+import CursorFollower from "@/components/animations/CursorFollower";
 
 export default function HomeTemplate(): React.ReactElement {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -33,6 +34,7 @@ export default function HomeTemplate(): React.ReactElement {
 
   return (
     <div className="bg-black text-gray-300 min-h-screen">
+      <CursorFollower />
       <BackgroundDotsCanvas />
       <Header />
       {/* Mobile-only sticky-from-bottom NavBar. Starts fixed at bottom, sticks below header on scroll */}

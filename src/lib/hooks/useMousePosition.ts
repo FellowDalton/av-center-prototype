@@ -10,13 +10,6 @@ interface MousePosition {
 export function useMousePosition() {
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
 
-  const updateMousePosition = useCallback((e: MouseEvent) => {
-    // Use requestAnimationFrame for performance optimization
-    requestAnimationFrame(() => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    });
-  }, []);
-
   useEffect(() => {
     // Check if device supports mouse (not touch-only)
     const hasPointer = window.matchMedia('(pointer: fine)').matches;
@@ -25,32 +18,36 @@ export function useMousePosition() {
       return; // Don't track mouse on touch devices
     }
 
-    // Add throttling to prevent excessive updates
-    let throttleId: number | null = null;
+    // Direct mouse position update with RAF throttling
+    let rafId: number | null = null;
     
-    const throttledUpdate = (e: MouseEvent) => {
-      if (throttleId) {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (rafId !== null) {
         return;
       }
       
-      throttleId = requestAnimationFrame(() => {
-        updateMousePosition(e);
-        throttleId = null;
+      rafId = requestAnimationFrame(() => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+        rafId = null;
       });
     };
 
-    window.addEventListener('mousemove', throttledUpdate);
-    window.addEventListener('mouseenter', throttledUpdate);
+    const handleMouseEnter = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseenter', handleMouseEnter);
 
     return () => {
-      window.removeEventListener('mousemove', throttledUpdate);
-      window.removeEventListener('mouseenter', throttledUpdate);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseenter', handleMouseEnter);
       
-      if (throttleId) {
-        cancelAnimationFrame(throttleId);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
       }
     };
-  }, [updateMousePosition]);
+  }, []);
 
   return mousePosition;
 }
