@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, SpringOptions } from 'framer-motion';
+import { motion, Transition } from 'framer-motion';
 import { useMousePosition } from '@/lib/hooks/useMousePosition';
 import { useState, useEffect } from 'react';
 
@@ -8,7 +8,7 @@ export interface CursorFollowerProps {
   size?: number;
   color?: string;
   blendMode?: 'difference' | 'multiply' | 'screen';
-  springConfig?: SpringOptions;
+  springConfig?: Transition;
   adaptiveSize?: boolean;
   hideOnTouch?: boolean;
 }
@@ -18,7 +18,6 @@ export default function CursorFollower({
   color = 'rgba(59, 130, 246, 0.5)',
   blendMode = 'difference',
   springConfig = {
-    type: 'spring',
     stiffness: 500,
     damping: 28,
   },
@@ -102,14 +101,14 @@ export default function CursorFollower({
     return baseSize;
   };
 
-  const adaptiveSize = getAdaptiveSize();
+  const currentSize = getAdaptiveSize();
 
   return (
     <motion.div
       className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full"
       style={{
-        width: adaptiveSize,
-        height: adaptiveSize,
+        width: currentSize,
+        height: currentSize,
         backgroundColor: color,
         mixBlendMode: blendMode,
         transform: 'translate(-50%, -50%)',
