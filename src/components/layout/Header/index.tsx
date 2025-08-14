@@ -66,7 +66,7 @@ export function Header(): React.ReactElement {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="backdrop-blur-md px-6 md:px-10 lg:px-16"
       >
-        <nav className="flex justify-between items-center max-w-screen-xl mx-auto h-[70px]">
+        <nav className="flex justify-between items-center max-w-[1188px] mx-auto h-[70px]">
           {/* Logo Section */}
           <Logo />
 

@@ -1,0 +1,205 @@
+# UI Agent Features - Task 10: Create Logo Slider Component
+
+## Task ID: 10-UI-F
+## Dependencies: 9-UI-F
+## Priority: Medium
+## Order: 9
+
+## Description
+Adapt the Image Slider component to create a continuously scrolling logo slider for displaying brand logos with grayscale-to-color hover effects.
+
+## Subtasks
+
+### 10.1 Create Logo Carousel Section Header
+Create components/sections/LogoCarouselHeader.tsx:
+
+**Figma Header Component:**
+```jsx
+// Logo carousel section header - no navigation buttons
+<div style={{width: 1314, justifyContent: 'flex-start', alignItems: 'center', gap: 8, display: 'inline-flex'}}>
+  <div style={{width: 4, height: 4, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 999}} />
+  <div style={{color: 'var(--Color-Neutral-White, white)', fontSize: 16, fontFamily: 'JetBrains Mono', fontWeight: '500', wordWrap: 'break-word'}}>Kunder</div>
+  <div style={{flex: '1 1 0', height: 0, outline: '0.50px var(--Color-Gray-cold-400, #9AA1AE) solid', outlineOffset: '-0.25px'}}></div>
+</div>
+```
+
+**Header Implementation Notes:**
+- [ ] Create full-width section header spanning entire container (1314px width)
+- [ ] Position "Kunder" (Customers) label with emerald dot on the left
+- [ ] Implement decorative line extending across the full width
+- [ ] Use JetBrains Mono font for "Kunder" label (16px, weight 500)
+- [ ] Apply white text color using CSS variables (--Color-Neutral-White)
+- [ ] Style decorative line with gray outline (0.5px solid, #9AA1AE)
+- [ ] No navigation buttons (unlike case study slider header)
+- [ ] Ensure proper responsive behavior for mobile devices
+- [ ] Header should be positioned above the logo carousel
+
+### 10.2 Create Left Side Content Section
+Create components/sections/LogoCarouselContent.tsx:
+- [ ] Implement two-column layout (content left, carousel right)
+- [ ] Add responsive breakpoints for mobile stacking
+
+**Figma Left Side Content:**
+```jsx
+// Left side content with title and testimonials link
+<div style={{width: 478, flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', gap: 24, display: 'inline-flex'}}>
+  <div style={{alignSelf: 'stretch', color: 'var(--Color-Neutral-White, white)', fontSize: 36, fontFamily: 'Neulis Sans', fontWeight: '400', wordWrap: 'break-word'}}>Vi samarbejder med ... lorem ipsum</div>
+  <div style={{height: 20, paddingRight: 30, position: 'relative', justifyContent: 'flex-start', alignItems: 'center', gap: 54, display: 'inline-flex'}}>
+    <div style={{color: 'var(--Color-Emerald-400, #2DD494)', fontSize: 14, fontFamily: 'JetBrains Mono', fontWeight: '400', wordWrap: 'break-word'}}>Udtalelser fra vores kunder</div>
+    <div data-animation="1" style={{width: 257, height: 20, left: 0, top: 0, position: 'absolute'}}>
+      <div style={{width: 2, height: 2, left: 248, top: 5, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 246, top: 3, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 252, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 239, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 242, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 245, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 248, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 250, top: 11, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 248, top: 13, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 246, top: 15, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 250, top: 7, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+    </div>
+  </div>
+</div>
+```
+
+**Left Content Implementation Notes:**
+- [ ] Create main heading using Neulis Sans font (36px)
+- [ ] Style heading text: "Vi samarbejder med ... lorem ipsum"
+- [ ] Implement "Udtalelser fra vores kunder" (Customer testimonials) link in emerald color (#2DD494)
+- [ ] Use JetBrains Mono font for the link text (14px)
+- [ ] Add animated dot pattern as link decoration/indicator (data-animation="1")
+- [ ] Convert dot animation to SVG or CSS-based animation
+- [ ] Make link clickable and route to testimonials page (/testimonials)
+- [ ] Add hover state for the link with dot animation
+- [ ] Ensure proper spacing (24px gap between title and link)
+- [ ] Make text responsive for mobile devices
+
+### 10.3 Integrate Logo Carousel Component
+**Note**: Reuse the carousel component from the case study slider (task 9).
+
+Create components/sections/LogoCarousel.tsx using the case study carousel as base:
+
+**Figma Logo Cards Structure:**
+```jsx
+// Logo carousel with multiple logo cards and gradient fade
+<div data-property-1="Default" style={{width: 809, height: 109, position: 'relative', overflow: 'hidden'}}>
+  <div style={{left: 119, top: 30, position: 'absolute', justifyContent: 'flex-start', alignItems: 'center', gap: 91, display: 'inline-flex'}}>
+    <div style={{width: 154, height: 16, position: 'relative', overflow: 'hidden'}}>
+      <div style={{width: 11.37, height: 12.86, left: 47.07, top: 3.14, position: 'absolute', background: 'var(--Color-Gray-cold-400, #9AA1AE)'}} />
+      <div style={{width: 11.73, height: 15.82, left: 142.27, top: 0, position: 'absolute', background: 'var(--Color-Gray-cold-400, #9AA1AE)'}} />
+      {/* More logo elements... */}
+    </div>
+    <div style={{width: 134, height: 30, position: 'relative', overflow: 'hidden'}}>
+      <div style={{width: 131.37, height: 27.36, left: 1.31, top: 1.32, position: 'absolute', background: 'var(--Color-Gray-cold-400, #9AA1AE)'}} />
+    </div>
+    <div style={{width: 101, height: 40.93, position: 'relative', overflow: 'hidden'}}>
+      <div style={{width: 101, height: 40.93, left: 0, top: 0, position: 'absolute', background: 'var(--Color-Gray-cold-400, #9AA1AE)'}} />
+    </div>
+    <div style={{width: 165, height: 27.41, position: 'relative'}}>
+      <div style={{width: 8.55, height: 11.49, left: 19.79, top: 15.86, position: 'absolute', background: 'var(--Color-Gray-cold-400, #9AA1AE)'}} />
+      {/* More logo text elements... */}
+    </div>
+    <div style={{width: 108, height: 35.27, position: 'relative', overflow: 'hidden'}}>
+      <div style={{width: 65.85, height: 10.97, left: 41.99, top: 12.20, position: 'absolute', background: 'var(--Color-Gray-cold-400, #9AA1AE)'}} />
+    </div>
+    {/* Pattern repeats for infinite scroll effect */}
+  </div>
+  <div style={{width: 120, height: 109, left: -1, top: 0, position: 'absolute', background: 'linear-gradient(90deg, #030712 18%, rgba(3, 7, 18, 0) 100%)'}} />
+</div>
+```
+
+**Logo Carousel Implementation Notes:**
+- [ ] Reuse carousel infrastructure from `/components/ui/carousel.tsx` (from task 9)
+- [ ] Adapt carousel configuration for logo display instead of case studies
+- [ ] Configure continuous auto-scroll (no manual controls)
+- [ ] Set up infinite loop with seamless logo transitions
+- [ ] Show approximately 4-5 logos in view at once (gap: 91px between logos)
+- [ ] Implement gradient fade overlay on left edge (`linear-gradient(90deg, #030712 18%, rgba(3, 7, 18, 0) 100%)`)
+- [ ] Use gray color for logos by default (`--Color-Gray-cold-400, #9AA1AE`)
+- [ ] Convert absolute positioned logo shapes to proper SVG logos or images
+- [ ] Remove navigation buttons (auto-scroll only)
+- [ ] Ensure smooth scrolling performance with hardware acceleration
+
+**Logo Card TypeScript Interface:**
+```tsx
+interface LogoCardProps {
+  id: string;
+  name: string;
+  logoUrl: string;
+  width: number;
+  height: number;
+  altText: string;
+}
+
+interface LogoCarouselProps {
+  logos: LogoCardProps[];
+  autoScrollSpeed?: number;
+  showGradientFade?: boolean;
+  grayscaleDefault?: boolean;
+}
+```
+
+- [ ] Convert Figma placeholder shapes to actual customer logos
+- [ ] Standardize logo dimensions while maintaining aspect ratios
+- [ ] Implement grayscale filter by default with color reveal on hover
+- [ ] Add proper alt text for accessibility
+- [ ] Configure carousel for continuous auto-scroll (no pause)
+- [ ] Set consistent spacing between logo cards (91px gap)
+- [ ] Ensure smooth infinite loop without visual jumps
+
+### 10.4 Implement Infinite Loop
+- [ ] Create seamless infinite scroll
+- [ ] Duplicate logos for smooth looping
+- [ ] Handle variable logo counts
+- [ ] Prevent visual jumps
+- [ ] Maintain consistent speed
+
+### 10.5 Grayscale Hover Effect
+- [ ] Apply CSS grayscale filter by default
+- [ ] Remove filter on hover
+- [ ] Smooth transition between states
+- [ ] Support for SVG and raster logos
+- [ ] Maintain performance
+
+### 10.6 Logo Optimization
+- [ ] Standardize logo dimensions
+- [ ] Optimize file sizes
+- [ ] Support various formats (SVG, PNG)
+- [ ] Implement proper spacing
+- [ ] Handle logo aspect ratios
+
+### 10.7 Animation Configuration
+- [ ] Set constant scroll speed
+- [ ] No pause on hover (continuous)
+- [ ] Smooth acceleration/deceleration
+- [ ] Direction control (left/right)
+- [ ] Speed customization
+
+### 10.8 Responsive Behavior
+- [ ] Adjust logo size by viewport
+- [ ] Maintain scroll speed across devices
+- [ ] Handle touch devices appropriately
+- [ ] Test on various screen sizes
+
+## Validation Steps
+1. [ ] Seamless infinite loop works
+2. [ ] No visual jumps or stutters
+3. [ ] Grayscale effect transitions smoothly
+4. [ ] Consistent speed maintained
+5. [ ] Responsive on all devices
+
+## Git Commit
+After completing all tasks:
+```bash
+npm run dev
+# Test logo slider with various logo counts
+git add .
+git commit -m "feat: create logo slider with infinite loop and grayscale hover effects"
+```
+
+## Notes
+- Reuse ImageSlider component logic
+- Common for displaying partner/client logos
+- Ensure logos are properly licensed
+- Consider performance with many logos

@@ -128,3 +128,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Font utility classes */
+.font-neulis {
+  font-family: var(--font-sans);
+}
+
+.font-jetbrains {
+  font-family: var(--font-mono);
+}

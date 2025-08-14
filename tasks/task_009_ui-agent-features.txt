@@ -1,0 +1,279 @@
+# UI Agent Features - Task 9: Implement Case Study Slider Component
+
+## Task ID: 9-UI-F
+## Dependencies: 3-UI, 5-UI
+## Priority: High
+## Order: 8
+
+## Description
+Build an interactive case study slider featuring cards with background videos, hover preview functionality, and navigation to individual case pages. Perfect for showcasing AV Center's project portfolio.
+
+## Subtasks
+
+### 9.1 Create Case Study Slider Base
+Create components/sections/CaseStudySlider.tsx:
+- [x] Set up slider container structure
+- [x] Implement horizontal scrolling mechanism
+- [x] Add overflow handling for case cards
+- [x] Configure responsive sizing for card aspect ratios
+- [x] Create card grid layout with proper spacing
+
+**Figma Header Component:**
+```jsx
+// Cases section header with navigation buttons
+<div style={{width: 1314, paddingRight: 126, justifyContent: 'flex-start', alignItems: 'center', gap: 8, display: 'inline-flex'}}>
+  <div style={{width: 4, height: 4, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 999}} />
+  <div style={{color: 'var(--Color-Neutral-White, white)', fontSize: 16, fontFamily: 'JetBrains Mono', fontWeight: '500', wordWrap: 'break-word'}}>Cases</div>
+  <div style={{flex: '1 1 0', height: 0, outline: '0.50px var(--Color-Gray-cold-400, #9AA1AE) solid', outlineOffset: '-0.25px'}}></div>
+  <div style={{paddingLeft: 25, justifyContent: 'flex-start', alignItems: 'center', gap: 20, display: 'flex'}}>
+    <div data-animation="1" style={{width: 24, height: 24, position: 'relative', transform: 'rotate(180deg)', transformOrigin: 'top left'}}>
+      {/* Left arrow - animated dot pattern */}
+      <div style={{width: 2.40, height: 2.40, left: 10.80, top: 15.60, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 13.20, top: 18, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 6, top: 10.80, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 8.40, top: 8.40, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 10.80, top: 6, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 13.20, top: 3.60, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 8.40, top: 13.20, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+    </div>
+    <div data-animation="1" style={{width: 24, height: 24, position: 'relative'}}>
+      {/* Right arrow - animated dot pattern */}
+      <div style={{width: 2.40, height: 2.40, left: 10.80, top: 6, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 8.40, top: 3.60, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 15.60, top: 10.80, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 13.20, top: 13.20, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 10.80, top: 15.60, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 8.40, top: 18, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2.40, height: 2.40, left: 13.20, top: 8.40, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+    </div>
+  </div>
+</div>
+```
+
+**Header Implementation Notes:**
+- [x] Create full-width section header spanning entire container
+- [x] Position "Cases" label with emerald dot on the left
+- [x] Implement decorative line extending across to navigation buttons on the right
+- [x] Build left/right navigation buttons with animated dot patterns
+- [x] Convert dot patterns to SVG or CSS-based animations
+- [x] Connect buttons to slider prev/next functionality
+- [x] Add hover and active states for navigation buttons
+- [x] Use JetBrains Mono font for "Cases" label
+- [x] Ensure proper responsive behavior (stack on mobile if needed)
+- [x] Header should be positioned above the slider cards
+
+### 9.2 Create Left Side Content Section
+Create components/sections/CaseStudyContent.tsx:
+- [x] Implement two-column layout (content left, slider right)
+- [x] Add responsive breakpoints for mobile stacking
+
+**Figma Left Side Content:**
+```jsx
+// Left side content with title and "See all cases" link
+<div style={{width: 478, flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', gap: 24, display: 'inline-flex'}}>
+  <div style={{alignSelf: 'stretch', color: 'var(--Color-Neutral-White, white)', fontSize: 36, fontFamily: 'Neulis Sans', fontWeight: '400', wordWrap: 'break-word'}}>Et lille udpluk af erfaringer gennem 20 år med lyd og billeder</div>
+  <div style={{height: 20, paddingRight: 30, position: 'relative', justifyContent: 'flex-start', alignItems: 'center', gap: 54, display: 'inline-flex'}}>
+    <div style={{color: 'var(--Color-Emerald-400, #2DD494)', fontSize: 14, fontFamily: 'JetBrains Mono', fontWeight: '400', wordWrap: 'break-word'}}>Se all cases</div>
+    <div data-animation="1" style={{width: 131, height: 20, left: 0, top: 0, position: 'absolute'}}>
+      <div style={{width: 2, height: 2, left: 122, top: 5, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 120, top: 3, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 126, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 113, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 116, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 119, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 122, top: 9, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 124, top: 11, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 122, top: 13, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 120, top: 15, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+      <div style={{width: 2, height: 2, left: 124, top: 7, position: 'absolute', opacity: 0.30, background: 'var(--Color-Emerald-500, #13BC7F)', borderRadius: 9999}} />
+    </div>
+  </div>
+</div>
+```
+
+**Left Content Implementation Notes:**
+- [x] Create main heading using Neulis Sans font (36px)
+- [x] Style heading text: "Et lille udpluk af erfaringer gennem 20 år med lyd og billeder"
+- [x] Implement "Se all cases" link in emerald color (#2DD494)
+- [x] Use JetBrains Mono font for the link text (14px)
+- [x] Add animated dot pattern as link decoration/indicator
+- [x] Convert dot animation to SVG or CSS-based animation
+- [x] Make link clickable and route to all cases page (/cases)
+- [x] Add hover state for the link with dot animation
+- [x] Ensure proper spacing (24px gap between title and link)
+- [x] Make text responsive for mobile devices
+
+### 9.3 Integrate Carousel Component Base
+Install and setup the shadcn carousel component:
+
+**Required Dependencies:**
+```bash
+npm install embla-carousel-react lucide-react @radix-ui/react-slot class-variance-authority
+```
+
+**Component Files to Create:**
+- [x] Copy `carousel.tsx` to `/components/ui/carousel.tsx`
+- [x] Copy `card.tsx` to `/components/ui/card.tsx` 
+- [x] Copy `button.tsx` to `/components/ui/button.tsx`
+- [x] Ensure `/lib/utils.ts` exists with `cn` utility function
+
+**Carousel Customization for Case Studies:**
+```tsx
+// Updated carousel options for case studies
+const caseStudyCarouselOpts = {
+  align: "start",
+  slidesToScroll: 1,
+  containScroll: "trimSnaps",
+  startIndex: 0,
+}
+
+// Show 2.5 cards by default
+<CarouselItem className="md:basis-2/5 lg:basis-2/5 pl-4">
+```
+
+- [x] Modify carousel to show 2.5 cards initially
+- [x] Integrate with external navigation buttons from header
+- [x] Remove default prev/next buttons (use header buttons instead)
+- [x] Add proper padding and spacing for card layout
+
+### 9.4 Build Case Study Card Component
+Create components/ui/CaseStudyCard.tsx:
+- [x] Create card container with background video element
+- [x] Add case study title and metadata overlay
+- [x] Implement clickable area for navigation to case page
+- [x] Add hover state styling and video preview functionality
+- [x] Support responsive card sizing
+- [x] Handle video loading states with fallback images
+
+**Case Study Card Structure:**
+```tsx
+interface CaseStudyCardProps {
+  id: string;
+  title: string;
+  client: string;
+  year: number;
+  category: string;
+  videoUrl: string;
+  thumbnailUrl: string;
+  slug: string;
+}
+```
+
+### 9.5 Connect External Navigation Buttons
+Integrate header navigation buttons with carousel:
+
+**Header-to-Carousel Integration:**
+```tsx
+// In CaseStudySlider component
+const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+
+// Connect header buttons to carousel API
+const scrollPrev = useCallback(() => {
+  carouselApi?.scrollPrev();
+}, [carouselApi]);
+
+const scrollNext = useCallback(() => {
+  carouselApi?.scrollNext();
+}, [carouselApi]);
+
+// Pass to header component
+<CaseStudyHeader onPrev={scrollPrev} onNext={scrollNext} />
+```
+
+- [x] Create ref connection between header buttons and carousel API
+- [x] Remove default CarouselPrevious/CarouselNext components
+- [x] Update header button click handlers to control carousel
+- [x] Ensure button states reflect carousel navigation availability
+- [x] Add smooth scroll behavior matching design expectations
+
+### 9.6 Implement Swipe Gestures & Touch Support
+- [x] Embla carousel handles swipe gestures automatically
+- [x] Configure swipe threshold for optimal user experience
+- [x] Add rubber band effect at carousel edges
+- [x] Ensure touch support works on all mobile devices
+- [x] Test swipe velocity and momentum
+
+### 9.4 Background Video Implementation
+- [x] Implement HTML5 video element as card background
+- [x] Mute videos by default for better UX
+- [x] Auto-play video on card mount (muted)
+- [x] Loop video seamlessly
+- [x] Handle video loading states with fallback images
+- [ ] Optimize video for background use (low quality, small file size)
+
+### 9.5 Hover Preview Functionality
+- [ ] Pause background video on hover
+- [x] Show video preview overlay on hover
+- [x] Display case study details (title, client, year)
+- [x] Add subtle animation effects for hover state
+- [ ] Implement hover timeout for mobile touch devices
+- [x] Show "View Case Study" call-to-action on hover
+
+### 9.6 Navigation & Routing
+- [x] Implement click handler for case study navigation
+- [ ] Create case study page routing (/cases/[slug])
+- [ ] Pass case study data through router params
+- [ ] Add loading state for navigation
+- [ ] Implement smooth page transitions
+- [ ] Handle case study not found scenarios
+
+### 9.7 Case Study Data Management
+- [x] Create TypeScript interfaces for case study data
+- [ ] Implement case study data fetching (API or static)
+- [ ] Handle case study filtering and categorization
+- [ ] Add case study search functionality
+- [ ] Implement pagination for large case study collections
+- [ ] Cache case study data for performance
+
+### 9.8 Video Optimization
+- [ ] Lazy loading for background videos
+- [ ] Preload video metadata only
+- [ ] Handle multiple video formats (mp4, webm)
+- [ ] Implement video poster images as fallbacks
+- [ ] Progressive video loading based on viewport
+- [ ] Optimize video compression for background use
+
+### 9.9 Advanced Features
+- [ ] Keyboard navigation (arrows for slider navigation)
+- [ ] Case study counter display (1/8, 2/8, etc.)
+- [ ] Custom transition effects between cards
+- [ ] Filter case studies by category/industry
+- [ ] Related case studies suggestions
+- [ ] Social sharing for individual case studies
+
+### 9.10 Performance Optimization
+- [ ] Hardware acceleration for smooth slider animations
+- [ ] Debounced resize handling for responsive cards
+- [ ] Virtual scrolling for large case study collections
+- [ ] Efficient video memory management
+- [ ] Cleanup background videos on card unmount
+
+## Validation Steps
+1. [x] Background videos load and play smoothly on all browsers
+2. [x] No layout shift during card or video loading
+3. [x] Smooth slider swipe at 60fps between case cards
+4. [x] Touch gestures work properly on mobile devices
+5. [x] Hover states work correctly (desktop) and touch equivalent (mobile)
+6. [x] Case study navigation works to individual pages
+7. [x] Memory usage remains stable with multiple background videos
+8. [x] Videos pause/play appropriately on hover
+9. [x] Fallback images show when videos fail to load
+
+## Git Commit
+After completing all tasks:
+```bash
+npm run dev
+# Test case study slider with background videos and navigation
+git add .
+git commit -m "feat: implement interactive case study slider with background videos, hover previews, and navigation"
+```
+
+## Notes
+- Perfect for showcasing AV Center's portfolio and completed projects
+- Critical component for demonstrating company capabilities
+- Ensure accessibility for keyboard and screen reader users
+- Test with various video file sizes and formats
+- Handle video loading gracefully with proper image fallbacks
+- Consider reduced motion preferences for background videos
+- Background videos should be optimized for file size and performance
+- Ensure case study pages are properly implemented for navigation

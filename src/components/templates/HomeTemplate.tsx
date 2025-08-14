@@ -10,6 +10,9 @@ import ProofSection from "../organisms/ProofSection";
 import ContactSection from "../organisms/ContactSection";
 import Footer from "../organisms/Footer";
 import { NavBar } from "@/components/molecules/NavBar";
+import { LinkList } from "@/components/molecules/LinkList";
+import { CaseStudySection } from "@/components/sections/CaseStudySection";
+import { SectionContainer } from "@/components/layout/SectionContainer";
 import { Briefcase, FileText, Home, User } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import CursorFollower from "@/components/animations/CursorFollower";
@@ -50,7 +53,21 @@ export default function HomeTemplate(): React.ReactElement {
           <NavBar items={navItems} />
         </div>
       </div>
-      <ScrollHero />
+      
+      {/* ScrollHero - wrapped in SectionContainer */}
+      <SectionContainer variant="default">
+        <ScrollHero />
+      </SectionContainer>
+
+      {/* Text Accordion Section - wrapped in SectionContainer */}
+      <section className="relative z-10">
+        <SectionContainer variant="default" className="py-10 lg:py-20">
+          <LinkList />
+        </SectionContainer>
+      </section>
+
+      {/* Case Study Section - handles its own edge layout */}
+      <CaseStudySection className="relative z-10" />
     </div>
   );
 }

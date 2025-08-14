@@ -19,8 +19,14 @@ export default function BackgroundDotsCanvas(): React.ReactElement {
 
   const dotsRef = useRef<Dot[]>([]);
   const gridRef = useRef<Record<string, number[]>>({});
-  const canvasSizeRef = useRef<{ width: number; height: number }>({ width: 0, height: 0 });
-  const mousePositionRef = useRef<{ x: number | null; y: number | null }>({ x: null, y: null });
+  const canvasSizeRef = useRef<{ width: number; height: number }>({
+    width: 0,
+    height: 0,
+  });
+  const mousePositionRef = useRef<{ x: number | null; y: number | null }>({
+    x: null,
+    y: null,
+  });
 
   const DOT_SPACING = 25;
   const BASE_OPACITY_MIN = 0.4;
@@ -68,7 +74,9 @@ export default function BackgroundDotsCanvas(): React.ReactElement {
         const dotIndex = newDots.length;
         newGrid[cellKey].push(dotIndex);
 
-        const baseOpacity = Math.random() * (BASE_OPACITY_MAX - BASE_OPACITY_MIN) + BASE_OPACITY_MIN;
+        const baseOpacity =
+          Math.random() * (BASE_OPACITY_MAX - BASE_OPACITY_MIN) +
+          BASE_OPACITY_MIN;
         newDots.push({
           x,
           y,
@@ -83,7 +91,13 @@ export default function BackgroundDotsCanvas(): React.ReactElement {
     }
     dotsRef.current = newDots;
     gridRef.current = newGrid;
-  }, [DOT_SPACING, GRID_CELL_SIZE, BASE_OPACITY_MIN, BASE_OPACITY_MAX, BASE_RADIUS]);
+  }, [
+    DOT_SPACING,
+    GRID_CELL_SIZE,
+    BASE_OPACITY_MIN,
+    BASE_OPACITY_MAX,
+    BASE_RADIUS,
+  ]);
 
   const handleResize = useCallback(() => {
     const canvas = canvasRef.current;
@@ -139,10 +153,18 @@ export default function BackgroundDotsCanvas(): React.ReactElement {
 
     dots.forEach((dot, index) => {
       dot.currentOpacity += dot.opacitySpeed;
-      if (dot.currentOpacity >= dot.targetOpacity || dot.currentOpacity <= BASE_OPACITY_MIN) {
+      if (
+        dot.currentOpacity >= dot.targetOpacity ||
+        dot.currentOpacity <= BASE_OPACITY_MIN
+      ) {
         dot.opacitySpeed = -dot.opacitySpeed;
-        dot.currentOpacity = Math.max(BASE_OPACITY_MIN, Math.min(dot.currentOpacity, BASE_OPACITY_MAX));
-        dot.targetOpacity = Math.random() * (BASE_OPACITY_MAX - BASE_OPACITY_MIN) + BASE_OPACITY_MIN;
+        dot.currentOpacity = Math.max(
+          BASE_OPACITY_MIN,
+          Math.min(dot.currentOpacity, BASE_OPACITY_MAX)
+        );
+        dot.targetOpacity =
+          Math.random() * (BASE_OPACITY_MAX - BASE_OPACITY_MIN) +
+          BASE_OPACITY_MIN;
       }
 
       let interactionFactor = 0;
@@ -160,10 +182,15 @@ export default function BackgroundDotsCanvas(): React.ReactElement {
         }
       }
 
-      const finalOpacity = Math.min(1, dot.currentOpacity + interactionFactor * OPACITY_BOOST);
+      const finalOpacity = Math.min(
+        1,
+        dot.currentOpacity + interactionFactor * OPACITY_BOOST
+      );
       dot.currentRadius = dot.baseRadius + interactionFactor * RADIUS_BOOST;
 
-      const colorMatch = dot.baseColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+      const colorMatch = dot.baseColor.match(
+        /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/
+      );
       const r = colorMatch ? colorMatch[1] : "156";
       const g = colorMatch ? colorMatch[2] : "163";
       const b = colorMatch ? colorMatch[3] : "175";
@@ -175,7 +202,15 @@ export default function BackgroundDotsCanvas(): React.ReactElement {
     });
 
     animationFrameId.current = requestAnimationFrame(animateDots);
-  }, [GRID_CELL_SIZE, INTERACTION_RADIUS, INTERACTION_RADIUS_SQ, OPACITY_BOOST, RADIUS_BOOST, BASE_OPACITY_MIN, BASE_OPACITY_MAX]);
+  }, [
+    GRID_CELL_SIZE,
+    INTERACTION_RADIUS,
+    INTERACTION_RADIUS_SQ,
+    OPACITY_BOOST,
+    RADIUS_BOOST,
+    BASE_OPACITY_MIN,
+    BASE_OPACITY_MAX,
+  ]);
 
   useEffect(() => {
     handleResize();
@@ -192,7 +227,10 @@ export default function BackgroundDotsCanvas(): React.ReactElement {
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
-      document.documentElement.removeEventListener("mouseleave", handleMouseLeave);
+      document.documentElement.removeEventListener(
+        "mouseleave",
+        handleMouseLeave
+      );
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
       }
@@ -201,7 +239,10 @@ export default function BackgroundDotsCanvas(): React.ReactElement {
 
   return (
     <>
-      <canvas ref={canvasRef} className="fixed inset-0 z-0 pointer-events-none opacity-80" />
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 z-0 pointer-events-none opacity-80"
+      />
       <div
         className="fixed inset-0 z-1 pointer-events-none"
         style={{

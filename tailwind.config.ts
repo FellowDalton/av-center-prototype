@@ -82,6 +82,8 @@ export default {
       fontFamily: {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
+        neulis: ["var(--font-sans)"],
+        jetbrains: ["var(--font-mono)"],
       },
       fontSize: {
         xs: "var(--text-xs)",

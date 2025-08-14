@@ -319,14 +319,7 @@ const ScrollExpandMedia = ({
               </div>
             </div>
 
-            <motion.section
-              className="flex flex-col w-full px-8 py-10 md:px-16 lg:py-20"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: showContent ? 1 : 0 }}
-              transition={{ duration: 0.7 }}
-            >
-              {children}
-            </motion.section>
+            
           </div>
         </div>
       </section>
@@ -386,26 +379,6 @@ const sampleMediaContent: MediaContentCollection = {
   },
 };
 
-const MediaContent = ({
-  mediaType,
-}: {
-  mediaType: "video" | "image";
-}): React.ReactElement => {
-  const currentMedia = sampleMediaContent[mediaType];
-
-  return (
-    <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-white">Om komponenten</h2>
-      <p className="text-lg mb-8 text-gray-200">
-        {currentMedia.about.overview}
-      </p>
-      <p className="text-lg mb-8 text-gray-200">
-        {currentMedia.about.conclusion}
-      </p>
-    </div>
-  );
-};
-
 export default function ScrollHero(): React.ReactElement {
   const [mediaType, setMediaType] = useState<"video" | "image">("video");
   const currentMedia = sampleMediaContent[mediaType];
@@ -426,9 +399,7 @@ export default function ScrollHero(): React.ReactElement {
         title={currentMedia.title}
         date={currentMedia.date}
         scrollToExpand={currentMedia.scrollToExpand}
-      >
-        <MediaContent mediaType={mediaType} />
-      </ScrollExpandMedia>
+      ></ScrollExpandMedia>
     </div>
   );
 }
