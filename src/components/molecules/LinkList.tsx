@@ -29,30 +29,25 @@ export function LinkList({
   return (
     <div className={cn("w-full", className)}>
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12">
-        {/* Left Text Panel - Figma Imported Content */}
-        <div className="flex flex-col justify-center items-start gap-6 max-w-[478px]">
-          {/* Pre-header with green dot and line */}
-          <div className="self-stretch flex justify-start items-center gap-2">
-            <div className="w-1 h-1 bg-emerald-500 rounded-full" />
-            <div className="text-white text-base font-mono font-medium">
+        {/* Left Text Panel - Updated to match Figma style */}
+        <div className="w-[478px] inline-flex flex-col justify-center items-start gap-6">
+          <div className="self-stretch inline-flex justify-start items-center gap-2">
+            <div className="w-1 h-1 bg-emerald-500 rounded-[999px]" />
+            <div className="justify-start text-white text-base font-medium font-jetbrains">
               Pre header
             </div>
-            <div className="flex-1 h-px border-t border-gray-400" />
+            <div className="flex-1 h-0 outline outline-[0.50px] outline-offset-[-0.25px] outline-gray-cold-400"></div>
           </div>
-
-          {/* Main heading */}
-          <h1 className="self-stretch text-white text-4xl font-normal leading-tight">
+          <div className="self-stretch justify-start text-white text-4xl font-normal font-neulis">
             Overskrift hvor der beskrives mere specifikt om AV•Centers services
             og løsninger
-          </h1>
-
-          {/* Description */}
-          <p className="self-stretch text-gray-300 text-base font-normal leading-relaxed">
+          </div>
+          <div className="self-stretch justify-start text-gray-cold-300 text-base font-normal font-neulis">
             Vi er én af Danmarks førende virksomheder indenfor salg,
             installation, service og udlejning af audiovisuelle (AV)
             installationer, og vi tilbyder dig en professionel og nærværende
             kontakt med dine ønsker i fokus.
-          </p>
+          </div>
         </div>
 
         {/* Right Link List Panel - Figma Style */}

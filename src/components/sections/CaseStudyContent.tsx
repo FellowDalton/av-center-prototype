@@ -1,14 +1,13 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils/cn"
-import Link from "next/link"
-import { DotsArrow } from "@/components/atoms/DotsArrow"
+import * as React from "react";
+import { cn } from "@/lib/utils/cn";
+import { EmeraldDotsLink } from "@/components/atoms/EmeraldDotsLink";
 
 interface CaseStudyContentProps {
-  title?: string
-  linkText?: string
-  linkHref?: string
+  title?: string;
+  linkText?: string;
+  linkHref?: string;
 }
 
 export const CaseStudyContent = React.forwardRef<
@@ -16,12 +15,12 @@ export const CaseStudyContent = React.forwardRef<
   CaseStudyContentProps & React.HTMLAttributes<HTMLDivElement>
 >(
   (
-    { 
+    {
       title = "Et lille udpluk af erfaringer gennem 20 år med lyd og billeder",
       linkText = "Se all cases",
       linkHref = "/cases",
       className,
-      ...props 
+      ...props
     },
     ref
   ) => {
@@ -29,33 +28,21 @@ export const CaseStudyContent = React.forwardRef<
       <div
         ref={ref}
         className={cn(
-          "flex flex-col justify-center gap-6",
+          "flex flex-col gap-8 h-full min-h-[400px] pb-8",
           className
         )}
         {...props}
       >
         {/* Main heading */}
-        <h2 className="text-white text-3xl md:text-[36px] font-neulis font-normal leading-[1.3] max-w-[478px]">
+        <h2 className="text-white text-4xl font-neulis font-normal leading-[1.2] max-w-[578px]">
           {title}
         </h2>
 
-        {/* See all cases link with animated dots */}
-        <Link 
-          href={linkHref}
-          className="group inline-flex items-center gap-12 relative"
-        >
-          <span className="text-emerald-400 text-sm font-jetbrains font-normal hover:text-emerald-300 transition-colors">
-            {linkText}
-          </span>
-          
-          {/* Animated dot pattern */}
-          <div className="absolute left-0 top-0 w-32 h-5 pointer-events-none">
-            <DotsArrow />
-          </div>
-        </Link>
+        {/* See all cases link with dots pattern from Figma */}
+        <EmeraldDotsLink href={linkHref} text={linkText} />
       </div>
-    )
+    );
   }
-)
+);
 
-CaseStudyContent.displayName = "CaseStudyContent"
+CaseStudyContent.displayName = "CaseStudyContent";

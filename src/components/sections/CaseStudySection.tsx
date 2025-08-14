@@ -3,7 +3,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils/cn";
 import { CaseStudySlider } from "./CaseStudySlider";
-import { CaseStudyContent } from "./CaseStudyContent";
 import { type CaseStudyCardProps } from "@/components/ui/CaseStudyCard";
 import { type CarouselApi } from "@/components/ui/carousel";
 
@@ -33,29 +32,19 @@ export const CaseStudySection = React.forwardRef<
         </div>
       </div>
 
-      {/* Content with asymmetric layout */}
-      <div className="max-w-[1188px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left content - stays within container */}
-          <div className="lg:col-span-4 px-6 md:px-8">
-            <CaseStudyContent
-              title={title}
-              linkText={linkText}
-              linkHref={linkHref}
-            />
-          </div>
-
-          {/* Right slider - extends to edge */}
-          <div className="lg:col-span-8 px-6 md:px-8 lg:px-0">
-            {/* Calculate overflow to right edge on large screens */}
-            <div className="lg:-mr-[calc((100vw-1188px)/2-32px)]">
-              <CaseStudySlider
-                caseStudies={caseStudies}
-                showHeader={false}
-                onApiChange={setCarouselApi}
-              />
-            </div>
-          </div>
+      {/* Full-width slider with content as first slide */}
+      <div className="w-full overflow-hidden">
+        {/* Add left padding to align start position with SectionContainer */}
+        <div className="">
+          <CaseStudySlider
+            caseStudies={caseStudies}
+            showHeader={false}
+            onApiChange={setCarouselApi}
+            includeContentSlide={true}
+            contentTitle={title}
+            contentLinkText={linkText}
+            contentLinkHref={linkHref}
+          />
         </div>
       </div>
     </section>
