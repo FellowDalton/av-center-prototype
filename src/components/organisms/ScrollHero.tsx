@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState, type ReactNode } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -8,30 +8,20 @@ interface ScrollExpandMediaProps {
   mediaType?: "video" | "image";
   mediaSrc: string;
   posterSrc?: string;
-  bgImageSrc: string;
   title?: string;
-  date?: string;
-  scrollToExpand?: string;
   textBlend?: boolean;
-  children?: ReactNode;
 }
 
 const ScrollExpandMedia = ({
   mediaType = "video",
   mediaSrc,
   posterSrc,
-  bgImageSrc,
   title,
-  date,
-  scrollToExpand,
   textBlend,
-  children,
 }: ScrollExpandMediaProps): React.ReactElement => {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
-  const [showContent, setShowContent] = useState<boolean>(false);
   const [mediaFullyExpanded, setMediaFullyExpanded] = useState<boolean>(false);
   const [touchStartY, setTouchStartY] = useState<number>(0);
-  const [isMobileState, setIsMobileState] = useState<boolean>(false);
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -42,7 +32,6 @@ const ScrollExpandMedia = ({
 
   useEffect(() => {
     setScrollProgress(0);
-    setShowContent(false);
     setMediaFullyExpanded(false);
   }, [mediaType]);
 
@@ -61,9 +50,6 @@ const ScrollExpandMedia = ({
             const next = Math.min(Math.max(prev + scrollDelta, 0), 1);
             if (next >= 1) {
               setMediaFullyExpanded(true);
-              setShowContent(true);
-            } else if (next < 0.75) {
-              setShowContent(false);
             }
             return next;
           });
@@ -97,9 +83,6 @@ const ScrollExpandMedia = ({
             const next = Math.min(Math.max(prev + scrollDelta, 0), 1);
             if (next >= 1) {
               setMediaFullyExpanded(true);
-              setShowContent(true);
-            } else if (next < 0.75) {
-              setShowContent(false);
             }
             return next;
           });
@@ -134,17 +117,6 @@ const ScrollExpandMedia = ({
       window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [scrollProgress, mediaFullyExpanded, touchStartY]);
-
-  useEffect(() => {
-    const checkIfMobile = (): void => {
-      setIsMobileState(window.innerWidth < 768);
-    };
-
-    checkIfMobile();
-    window.addEventListener("resize", checkIfMobile);
-
-    return () => window.removeEventListener("resize", checkIfMobile);
-  }, []);
 
   // Measure the wrapper's pixel size (100% width with 16/9 aspect)
   useEffect(() => {
@@ -185,9 +157,6 @@ const ScrollExpandMedia = ({
   const leftPercent =
     startPercent + (endPercent - startPercent) * scrollProgress;
 
-  const firstWord = title ? title.split(" ")[0] : "";
-  const restOfTitle = title ? title.split(" ").slice(1).join(" ") : "";
-
   return (
     <div
       ref={sectionRef}
@@ -213,7 +182,7 @@ const ScrollExpandMedia = ({
                         fontFamily: "Neulis Sans",
                         fontWeight: "500",
                         wordWrap: "break-word",
-                        paddingTop: "30px",
+                        paddingTop: "8vw",
                       }}
                     >
                       Salg, service og udlejning af AV-løsninger
@@ -252,7 +221,6 @@ const ScrollExpandMedia = ({
                                   mediaSrc.split("v=")[1]
                             }
                             className="w-full h-full"
-                            frameBorder={0}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                           />
@@ -318,8 +286,6 @@ const ScrollExpandMedia = ({
                 </div>
               </div>
             </div>
-
-            
           </div>
         </div>
       </section>
@@ -335,10 +301,7 @@ interface MediaAbout {
 interface MediaContent {
   src: string;
   poster?: string;
-  background: string;
   title: string;
-  date: string;
-  scrollToExpand: string;
   about: MediaAbout;
 }
 
@@ -351,11 +314,7 @@ const sampleMediaContent: MediaContentCollection = {
     src: "/Av-center%20showreel.mp4",
     poster:
       "https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg",
-    background:
-      "https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYMNjMlBUYHaeYpxduXPVNwf8mnFA61L7rkcoS",
     title: "",
-    date: "Cosmic Journey",
-    scrollToExpand: "Scroll to Expand Demo",
     about: {
       overview:
         "This is a demonstration of the ScrollExpandMedia component with a video. As you scroll, the video expands to fill more of the screen, creating an immersive experience. This component is perfect for showcasing video content in a modern, interactive way.",
@@ -365,11 +324,7 @@ const sampleMediaContent: MediaContentCollection = {
   },
   image: {
     src: "https://images.unsplash.com/photo-1682687982501-1e58ab814714?q=80&w=1280&auto=format&fit=crop",
-    background:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1920&auto=format&fit=crop",
     title: "Dynamic Image Showcase",
-    date: "Underwater Adventure",
-    scrollToExpand: "Scroll to Expand Demo",
     about: {
       overview:
         "This is a demonstration of the ScrollExpandMedia component with an image. The same smooth expansion effect works beautifully with static images, allowing you to create engaging visual experiences without video content.",
@@ -380,7 +335,7 @@ const sampleMediaContent: MediaContentCollection = {
 };
 
 export default function ScrollHero(): React.ReactElement {
-  const [mediaType, setMediaType] = useState<"video" | "image">("video");
+  const [mediaType] = useState<"video" | "image">("video");
   const currentMedia = sampleMediaContent[mediaType];
 
   useEffect(() => {
@@ -395,10 +350,7 @@ export default function ScrollHero(): React.ReactElement {
         mediaType={mediaType}
         mediaSrc={currentMedia.src}
         posterSrc={mediaType === "video" ? currentMedia.poster : undefined}
-        bgImageSrc={currentMedia.background}
         title={currentMedia.title}
-        date={currentMedia.date}
-        scrollToExpand={currentMedia.scrollToExpand}
       ></ScrollExpandMedia>
     </div>
   );

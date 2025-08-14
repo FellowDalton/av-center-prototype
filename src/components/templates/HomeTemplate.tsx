@@ -3,12 +3,7 @@
 import React, { useEffect, useState } from "react";
 import BackgroundDotsCanvas from "../organisms/BackgroundDotsCanvas";
 import Header from "../organisms/Header";
-import HeroSection from "../organisms/HeroSection";
 import ScrollHero from "../organisms/ScrollHero";
-import FeaturesSection from "../organisms/FeaturesSection";
-import ProofSection from "../organisms/ProofSection";
-import ContactSection from "../organisms/ContactSection";
-import Footer from "../organisms/Footer";
 import { NavBar } from "@/components/molecules/NavBar";
 import { LinkList } from "@/components/molecules/LinkList";
 import { CaseStudySection } from "@/components/sections/CaseStudySection";

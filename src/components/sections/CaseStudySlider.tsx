@@ -9,7 +9,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel"
 import { CaseStudyCard, type CaseStudyCardProps } from "@/components/ui/CaseStudyCard"
-import { EmeraldDotsButton } from "@/components/atoms/EmeraldDotsButton"
+import { EmeraldDotsButton } from "@/components/atoms/DotsButton"
 
 interface CaseStudyHeaderProps {
   carouselApi?: CarouselApi
@@ -100,39 +100,15 @@ const CaseStudySliderComponent = React.forwardRef<
   CaseStudySliderProps & React.HTMLAttributes<HTMLDivElement>
 >(({ caseStudies = [], showHeader = true, onApiChange, className, ...props }, ref) => {
   const [api, setApi] = React.useState<CarouselApi>()
-  const [canScrollPrev, setCanScrollPrev] = React.useState(false)
-  const [canScrollNext, setCanScrollNext] = React.useState(false)
 
   React.useEffect(() => {
     if (!api) return
-
-    const updateScrollButtons = () => {
-      setCanScrollPrev(api.canScrollPrev())
-      setCanScrollNext(api.canScrollNext())
-    }
-
-    updateScrollButtons()
-    api.on("select", updateScrollButtons)
-    api.on("reInit", updateScrollButtons)
 
     // Call onApiChange when api is available
     if (onApiChange) {
       onApiChange(api)
     }
-
-    return () => {
-      api.off("select", updateScrollButtons)
-      api.off("reInit", updateScrollButtons)
-    }
   }, [api, onApiChange])
-
-  const scrollPrev = React.useCallback(() => {
-    api?.scrollPrev()
-  }, [api])
-
-  const scrollNext = React.useCallback(() => {
-    api?.scrollNext()
-  }, [api])
 
   // Sample data if no case studies provided - using actual files from public folder
   const defaultCaseStudies: CaseStudyCardProps[] = [

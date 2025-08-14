@@ -3,6 +3,7 @@
 import * as React from "react"
 import { cn } from "@/lib/utils/cn"
 import Link from "next/link"
+import Image from "next/image"
 
 export interface CaseStudyCardProps {
   id: string
@@ -21,11 +22,8 @@ export const CaseStudyCard = React.forwardRef<
 >(
   (
     { 
-      id, 
       title, 
       client, 
-      year, 
-      category, 
       videoUrl, 
       thumbnailUrl, 
       slug,
@@ -69,11 +67,12 @@ export const CaseStudyCard = React.forwardRef<
           {...props}
         >
           {/* Background Image - Always visible when not hovering */}
-          <img
+          <Image
             src={thumbnailUrl}
             alt={title}
+            fill
             className={cn(
-              "absolute inset-0 w-full h-full object-cover transition-opacity duration-500",
+              "object-cover transition-opacity duration-500",
               isHovered && isVideoLoaded ? "opacity-0" : "opacity-100"
             )}
           />
