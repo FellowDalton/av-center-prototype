@@ -22,6 +22,8 @@ const ScrollExpandMedia = ({
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [mediaFullyExpanded, setMediaFullyExpanded] = useState<boolean>(false);
   const [touchStartY, setTouchStartY] = useState<number>(0);
+  const [extraScrollBuffer, setExtraScrollBuffer] = useState<number>(0);
+  const SCROLL_BUFFER_THRESHOLD = 40; // 40px extra scroll required
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -33,16 +35,29 @@ const ScrollExpandMedia = ({
   useEffect(() => {
     setScrollProgress(0);
     setMediaFullyExpanded(false);
+    setExtraScrollBuffer(0); // Reset buffer when media type changes
   }, [mediaType]);
 
   useEffect(() => {
     let rafId: number | null = null;
     const handleWheel = (e: Event): void => {
       const wheelEvent = e as WheelEvent;
-      if (mediaFullyExpanded && wheelEvent.deltaY < 0 && window.scrollY <= 5) {
-        setMediaFullyExpanded(false);
-        e.preventDefault();
+      
+      if (mediaFullyExpanded) {
+        // Handle scrolling when video is fully expanded
+        if (wheelEvent.deltaY < 0 && window.scrollY <= 5) {
+          // Scrolling up - contract the video
+          setMediaFullyExpanded(false);
+          setExtraScrollBuffer(0); // Reset buffer
+          e.preventDefault();
+        } else if (wheelEvent.deltaY > 0 && extraScrollBuffer < SCROLL_BUFFER_THRESHOLD) {
+          // Scrolling down - accumulate buffer before allowing page scroll
+          e.preventDefault();
+          setExtraScrollBuffer((prev) => Math.min(prev + Math.abs(wheelEvent.deltaY), SCROLL_BUFFER_THRESHOLD));
+        }
+        // If buffer is satisfied, allow normal scrolling (don't prevent default)
       } else if (!mediaFullyExpanded) {
+        // Handle expansion animation
         e.preventDefault();
         const performUpdate = () => {
           const scrollDelta = wheelEvent.deltaY * 0.0009;
@@ -50,6 +65,7 @@ const ScrollExpandMedia = ({
             const next = Math.min(Math.max(prev + scrollDelta, 0), 1);
             if (next >= 1) {
               setMediaFullyExpanded(true);
+              setExtraScrollBuffer(0); // Reset buffer when expanding
             }
             return next;
           });
@@ -71,10 +87,24 @@ const ScrollExpandMedia = ({
       const touchY = touchEvent.touches[0].clientY;
       const deltaY = touchStartY - touchY;
 
-      if (mediaFullyExpanded && deltaY < -20 && window.scrollY <= 5) {
-        setMediaFullyExpanded(false);
-        e.preventDefault();
+      if (mediaFullyExpanded) {
+        // Handle touch scrolling when video is fully expanded
+        if (deltaY < -20 && window.scrollY <= 5) {
+          // Swiping down - contract the video
+          setMediaFullyExpanded(false);
+          setExtraScrollBuffer(0); // Reset buffer
+          e.preventDefault();
+        } else if (deltaY > 0 && extraScrollBuffer < SCROLL_BUFFER_THRESHOLD) {
+          // Swiping up - accumulate buffer before allowing page scroll
+          e.preventDefault();
+          setExtraScrollBuffer((prev) => Math.min(prev + Math.abs(deltaY), SCROLL_BUFFER_THRESHOLD));
+          setTouchStartY(touchY);
+        } else if (deltaY > 0 && extraScrollBuffer >= SCROLL_BUFFER_THRESHOLD) {
+          // Buffer satisfied, allow normal scrolling
+          setTouchStartY(touchY);
+        }
       } else if (!mediaFullyExpanded) {
+        // Handle expansion animation
         e.preventDefault();
         const update = () => {
           const scrollFactor = deltaY < 0 ? 0.008 : 0.005;
@@ -83,6 +113,7 @@ const ScrollExpandMedia = ({
             const next = Math.min(Math.max(prev + scrollDelta, 0), 1);
             if (next >= 1) {
               setMediaFullyExpanded(true);
+              setExtraScrollBuffer(0); // Reset buffer when expanding
             }
             return next;
           });
@@ -116,7 +147,7 @@ const ScrollExpandMedia = ({
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [scrollProgress, mediaFullyExpanded, touchStartY]);
+  }, [scrollProgress, mediaFullyExpanded, touchStartY, extraScrollBuffer, SCROLL_BUFFER_THRESHOLD]);
 
   // Measure the wrapper's pixel size (100% width with 16/9 aspect)
   useEffect(() => {
@@ -134,7 +165,16 @@ const ScrollExpandMedia = ({
 
   // Pixel-accurate mask: compute from measured width/height (16/9). Start as 1/1 circle, morph to 16/9 rounded rect.
   const { width: containerWidthPx, height: containerHeightPx } = containerSize;
-  const initialCircleScale = 0.6; // circle diameter as a fraction of the container height
+  
+  // Responsive circle scale based on screen width
+  const getInitialCircleScale = () => {
+    if (containerWidthPx < 768) return 0.4; // mobile
+    if (containerWidthPx < 1280) return 0.45; // small laptop
+    if (containerWidthPx < 1536) return 0.5; // laptop
+    return 0.6; // desktop
+  };
+  
+  const initialCircleScale = getInitialCircleScale();
   const initialSquarePx = Math.max(
     50,
     Math.min(containerHeightPx, containerWidthPx) * initialCircleScale
@@ -149,8 +189,15 @@ const ScrollExpandMedia = ({
     startCornerPx + (endCornerPx - startCornerPx) * scrollProgress;
   const clipPathValue = `inset(${insetYPx}px ${insetXPx}px ${insetYPx}px ${insetXPx}px round ${cornerRadiusPx}px)`;
 
-  // Animate position: top/left from 65% -> 50%
-  const startPercent = 65;
+  // Responsive position: adjust starting position based on screen size
+  const getStartPosition = () => {
+    if (containerWidthPx < 768) return 75; // mobile - further down
+    if (containerWidthPx < 1280) return 70; // small laptop - lower to avoid text
+    if (containerWidthPx < 1536) return 67; // laptop
+    return 65; // desktop
+  };
+  
+  const startPercent = getStartPosition();
   const endPercent = 50;
   const topPercent =
     startPercent + (endPercent - startPercent) * scrollProgress;
@@ -174,7 +221,7 @@ const ScrollExpandMedia = ({
                       textBlend ? "mix-blend-difference" : "mix-blend-normal"
                     }`}
                   >
-                    <div className="w-[735px] justify-start text-white text-6xl text-white text-4xl font-medium font-neulis pt-[8vw]">
+                    <div className="max-w-[735px] w-full px-4 lg:px-0 justify-start text-white text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-medium font-neulis pt-[4vw] md:pt-[6vw] lg:pt-[8vh]">
                       Salg, service og udlejning af AV-løsninger
                     </div>
                   </div>

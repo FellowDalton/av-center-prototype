@@ -95,11 +95,13 @@ const Waves = ({
   waveAmpY = 16,
   xGap = 25,
   yGap = 25,
-  friction = 0.925,
-  tension = 0.005,
+  friction = 0.97,
+  tension = 0.0007,
   maxCursorMove = 100,
   dotSpacing = 25,
   dotSize = 3,
+  gradientRadius = 100,
+  gradientFalloff = 50,
   style = {},
   className = "",
 }) => {
@@ -135,6 +137,8 @@ const Waves = ({
     yGap,
     dotSpacing,
     dotSize,
+    gradientRadius,
+    gradientFalloff,
   });
   const frameIdRef = useRef(null);
 
@@ -152,6 +156,8 @@ const Waves = ({
       yGap,
       dotSpacing,
       dotSize,
+      gradientRadius,
+      gradientFalloff,
     };
   }, [
     lineColor,
@@ -166,6 +172,8 @@ const Waves = ({
     yGap,
     dotSpacing,
     dotSize,
+    gradientRadius,
+    gradientFalloff,
   ]);
 
   useEffect(() => {
@@ -233,8 +241,8 @@ const Waves = ({
           if (dist < l) {
             const s = 1 - dist / l;
             const f = Math.cos(dist * 0.001) * s;
-            p.cursor.vx += Math.cos(mouse.a) * f * l * mouse.vs * 0.00065;
-            p.cursor.vy += Math.sin(mouse.a) * f * l * mouse.vs * 0.00065;
+            p.cursor.vx += Math.cos(mouse.a) * f * l * mouse.vs * 0.00025;
+            p.cursor.vy += Math.sin(mouse.a) * f * l * mouse.vs * 0.00025;
           }
 
           p.cursor.vx += (0 - p.cursor.x) * tension;
@@ -264,7 +272,8 @@ const Waves = ({
     function drawLines() {
       const { width, height } = boundingRef.current;
       const ctx = ctxRef.current;
-      const { lineColor, dotSpacing, dotSize } = configRef.current;
+      const { lineColor, dotSpacing, dotSize, gradientRadius, gradientFalloff } = configRef.current;
+      const mouse = mouseRef.current;
 
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = lineColor;
@@ -285,12 +294,30 @@ const Waves = ({
             const x = p1.x + dx * t;
             const y = p1.y + dy * t;
 
+            // Calculate distance from dot to mouse cursor
+            const mouseDistance = Math.sqrt(
+              Math.pow(x - mouse.sx, 2) + Math.pow(y - mouse.sy, 2)
+            );
+
+            // Calculate opacity based on distance
+            let opacity = 1;
+            if (mouseDistance > gradientRadius) {
+              // Smooth fade out beyond the gradient radius
+              const fadeDistance = mouseDistance - gradientRadius;
+              opacity = Math.max(0, 1 - (fadeDistance / gradientFalloff));
+            }
+
+            // Apply opacity and draw dot
+            ctx.globalAlpha = opacity;
             ctx.beginPath();
             ctx.arc(x, y, dotSize, 0, Math.PI * 2);
             ctx.fill();
           }
         }
       });
+
+      // Reset global alpha
+      ctx.globalAlpha = 1;
     }
 
     function tick(t) {

@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { breakpoints } from "./src/lib/design-tokens";
 
 export default {
   content: [
@@ -7,6 +8,7 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: breakpoints,
     extend: {
       colors: {
         background: "var(--background)",

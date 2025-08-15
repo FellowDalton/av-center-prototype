@@ -237,7 +237,7 @@ const CaseStudySliderComponent = React.forwardRef<
             {includeContentSlide && (
               <CarouselItem
                 key="content-slide"
-                className="basis-auto pl-6 md:pl-8 lg:pl-[calc((100vw-1188px)/2+60px)]" // class="max-w-[1188px] mx-auto px-6 md:px-8 lg:px-12"
+                className="basis-auto pl-10 md:pl-12 lg:pl-16 first-carousel-item"
               >
                 <div className="h-full flex">
                   <CaseStudyContent
@@ -265,6 +265,13 @@ const CaseStudySliderComponent = React.forwardRef<
             ))}
           </CarouselContent>
         </Carousel>
+        <style jsx global>{`
+          @media screen and (min-width: 1188px) {
+            .first-carousel-item {
+              padding-left: calc((100vw - 1188px) / 2 + 60px) !important;
+            }
+          }
+        `}</style>
       </div>
     );
   }

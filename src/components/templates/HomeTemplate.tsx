@@ -32,44 +32,52 @@ export default function HomeTemplate(): React.ReactElement {
   ];
 
   return (
-    <div className="bg-black text-gray-300 min-h-screen">
+    <div className="bg-black text-gray-300 min-h-screen relative">
       {/* <CursorFollower /> */}
       {/*  <BackgroundDotsCanvas /> */}
-      <Waves
-        lineColor="rgba(255, 255, 255, 0.1)"
-        waveSpeedX={0.0}
-        waveSpeedY={0.0}
-        className="z-0"
-      />
-      <Header />
-      {/* Mobile-only sticky-from-bottom NavBar. Starts fixed at bottom, sticks below header on scroll */}
-      <div className="md:hidden sticky top-[72px] z-40 flex justify-center pointer-events-none">
-        <div
-          className={cn(
-            isScrolled
-              ? "relative"
-              : "fixed bottom-4 left-1/2 -translate-x-1/2",
-            "pointer-events-auto"
-          )}
-        >
-          <NavBar items={navItems} />
-        </div>
+
+      {/* Fixed Waves background that becomes absolute when scrolled past */}
+      <div className="fixed top-0 left-0 w-full h-screen pointer-events-none z-0">
+        <Waves
+          lineColor="rgba(255, 255, 255, 0.1)"
+          waveSpeedX={0.0}
+          waveSpeedY={0.0}
+          className="pointer-events-auto"
+        />
       </div>
 
-      {/* ScrollHero - wrapped in SectionContainer */}
-      <SectionContainer variant="default">
-        <ScrollHero />
-      </SectionContainer>
+      {/* Main content before CaseStudySection */}
+      <div className="relative z-10">
+        <Header />
+        {/* Mobile-only sticky-from-bottom NavBar. Starts fixed at bottom, sticks below header on scroll */}
+        <div className="md:hidden sticky top-[72px] z-40 flex justify-center pointer-events-none">
+          <div
+            className={cn(
+              isScrolled
+                ? "relative"
+                : "fixed bottom-4 left-1/2 -translate-x-1/2",
+              "pointer-events-auto"
+            )}
+          >
+            <NavBar items={navItems} />
+          </div>
+        </div>
 
-      {/* Text Accordion Section - wrapped in SectionContainer */}
-      <section className="relative z-10">
-        <SectionContainer variant="default" className="py-10 lg:py-20">
-          <LinkList />
+        {/* ScrollHero - wrapped in SectionContainer */}
+        <SectionContainer variant="default">
+          <ScrollHero />
         </SectionContainer>
-      </section>
 
-      {/* Case Study Section - handles its own edge layout */}
-      <CaseStudySection className="relative z-10" />
+        {/* Text Accordion Section - wrapped in SectionContainer */}
+        <section className="relative">
+          <SectionContainer variant="default" className="py-10 lg:py-20">
+            <LinkList />
+          </SectionContainer>
+        </section>
+      </div>
+
+      {/* Case Study Section - handles its own edge layout with solid background to hide waves */}
+      <CaseStudySection className="relative z-20 bg-black" />
     </div>
   );
 }

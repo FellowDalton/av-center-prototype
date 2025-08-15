@@ -8,7 +8,10 @@ interface ChatButtonProps {
   onClick?: () => void;
 }
 
-export function ChatButton({ className = "", onClick }: ChatButtonProps): React.ReactElement {
+export function ChatButton({
+  className = "",
+  onClick,
+}: ChatButtonProps): React.ReactElement {
   const [showTooltip, setShowTooltip] = useState(false);
 
   return (
@@ -16,13 +19,7 @@ export function ChatButton({ className = "", onClick }: ChatButtonProps): React.
       {/* Tooltip */}
       <AnimatePresence>
         {showTooltip && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.8 }}
-            transition={{ duration: 0.2 }}
-            className="absolute bottom-full right-0 mb-2 px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg whitespace-nowrap z-50"
-          >
+          <motion.div className="absolute bottom-full right-0 mb-2 px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg whitespace-nowrap z-50">
             Start chat
             <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900" />
           </motion.div>
@@ -36,14 +33,11 @@ export function ChatButton({ className = "", onClick }: ChatButtonProps): React.
         onMouseLeave={() => setShowTooltip(false)}
         className="relative flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 transition-colors duration-200"
         style={{
-          padding: '14.86px',
-          background: 'rgba(55, 65, 82, 0.50)',
-          borderRadius: '927.64px',
-          backdropFilter: 'blur(5.57px)',
+          padding: "14.86px",
+          background: "rgba(55, 65, 82, 0.50)",
+          borderRadius: "927.64px",
+          backdropFilter: "blur(5.57px)",
         }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ type: "spring", stiffness: 400, damping: 15 }}
         aria-label="Open chat"
       >
         {/* Chat Icon - dotted pattern from Figma design */}
@@ -70,9 +64,9 @@ export function ChatButton({ className = "", onClick }: ChatButtonProps): React.
         <motion.div
           className="absolute w-[11.14px] h-[11.14px] rounded-full"
           style={{
-            left: '36.21px',
-            top: '0.93px',
-            background: 'var(--Color-Emerald-500, #13BC7F)',
+            left: "36.21px",
+            top: "0.93px",
+            background: "var(--Color-Emerald-500, #13BC7F)",
           }}
           animate={{
             scale: [1, 1.2, 1],

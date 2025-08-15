@@ -17,11 +17,11 @@ export interface LinkListProps {
 export function LinkList({
   className,
   linkItems = [
-    { id: "1", title: "Overskrift 1" },
-    { id: "2", title: "Overskrift 2" },
-    { id: "3", title: "Overskrift 3" },
-    { id: "4", title: "Overskrift 4" },
-    { id: "5", title: "Overskrift 5" },
+    { id: "1", title: "Installation" },
+    { id: "2", title: "Service" },
+    { id: "3", title: "Udlejning" },
+    { id: "4", title: "Løsninger" },
+    { id: "5", title: "Support" },
   ],
 }: LinkListProps): React.ReactElement {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);

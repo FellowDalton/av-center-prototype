@@ -60,13 +60,12 @@ export function Header(): React.ReactElement {
       className="fixed top-0 left-0 right-0 z-30 w-full"
     >
       <motion.div
-        variants={backgroundVariants}
         initial="transparent"
         animate={isScrolled ? "solid" : "transparent"}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="backdrop-blur-md px-6 md:px-10 lg:px-16"
+        className="px-6 md:px-10 lg:px-16"
       >
-        <nav className="flex justify-between items-center max-w-[1188px] mx-auto h-[70px]">
+        <nav className="flex justify-between max-w-[1188px] mx-auto h-[70px]">
           {/* Logo Section */}
           <Logo />
 
