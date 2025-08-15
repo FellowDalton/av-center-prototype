@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import BackgroundDotsCanvas from "../organisms/BackgroundDotsCanvas";
 import Header from "../organisms/Header";
 import ScrollHero from "../organisms/ScrollHero";
+import Waves from "../organisms/Waves";
 import { NavBar } from "@/components/molecules/NavBar";
 import { LinkList } from "@/components/molecules/LinkList";
 import { CaseStudySection } from "@/components/sections/CaseStudySection";
@@ -33,7 +34,13 @@ export default function HomeTemplate(): React.ReactElement {
   return (
     <div className="bg-black text-gray-300 min-h-screen">
       {/* <CursorFollower /> */}
-      <BackgroundDotsCanvas />
+      {/*  <BackgroundDotsCanvas /> */}
+      <Waves
+        lineColor="rgba(255, 255, 255, 0.1)"
+        waveSpeedX={0.0}
+        waveSpeedY={0.0}
+        className="z-0"
+      />
       <Header />
       {/* Mobile-only sticky-from-bottom NavBar. Starts fixed at bottom, sticks below header on scroll */}
       <div className="md:hidden sticky top-[72px] z-40 flex justify-center pointer-events-none">

@@ -164,7 +164,7 @@ const ScrollExpandMedia = ({
     >
       <section className="relative flex flex-col items-center justify-start min-h-[100dvh]">
         <div className="relative w-full flex flex-col items-center min-h-[100dvh]">
-          <div className="absolute inset-0 z-0 h-full bg-black" />
+          <div className="absolute inset-0 z-0 h-full" />
           <div className="container mx-auto flex flex-col items-center justify-start relative z-10">
             <div className="flex flex-col items-center justify-center w-full h-[100dvh] relative">
               <div className="w-full h-[60dvh] absolute">
@@ -220,7 +220,7 @@ const ScrollExpandMedia = ({
                           />
 
                           <motion.div
-                            className="absolute inset-0 bg-black/30"
+                            className="absolute inset-0"
                             initial={{ opacity: 0.7 }}
                             animate={{ opacity: 0.5 - scrollProgress * 0.3 }}
                             transition={{ duration: 0.2 }}
@@ -247,7 +247,7 @@ const ScrollExpandMedia = ({
                           />
 
                           <motion.div
-                            className="absolute inset-0 bg-black/30"
+                            className="absolute inset-0"
                             initial={{ opacity: 0.7 }}
                             animate={{ opacity: 0.5 - scrollProgress * 0.3 }}
                             transition={{ duration: 0.2 }}
@@ -265,7 +265,7 @@ const ScrollExpandMedia = ({
                         />
 
                         <motion.div
-                          className="absolute inset-0 bg-black/50"
+                          className="absolute inset-0"
                           initial={{ opacity: 0.7 }}
                           animate={{ opacity: 0.7 - scrollProgress * 0.3 }}
                           transition={{ duration: 0.2 }}
