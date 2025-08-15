@@ -174,6 +174,46 @@ const CaseStudySliderComponent = React.forwardRef<
         thumbnailUrl: "/case-image-2.png", // Reusing image 2
         slug: "wurth-automation",
       },
+      {
+        id: "5",
+        title: "Bæredygtig produktion og grøn teknologi",
+        client: "Universal Robots",
+        year: 2023,
+        category: "Technology",
+        videoUrl: "/case_video-1.mp4", // Reusing video 1
+        thumbnailUrl: "/case-image-1.png", // Reusing image 1
+        slug: "universal-robots-sustainability",
+      },
+      {
+        id: "6",
+        title: "Effektiv lagerstyring og automatisering",
+        client: "Würth",
+        year: 2023,
+        category: "Logistics",
+        videoUrl: "/case-video-2.mp4", // Reusing video 2
+        thumbnailUrl: "/case-image-2.png", // Reusing image 2
+        slug: "wurth-automation",
+      },
+      {
+        id: "7",
+        title: "Bæredygtig produktion og grøn teknologi",
+        client: "Universal Robots",
+        year: 2023,
+        category: "Technology",
+        videoUrl: "/case_video-1.mp4", // Reusing video 1
+        thumbnailUrl: "/case-image-1.png", // Reusing image 1
+        slug: "universal-robots-sustainability",
+      },
+      {
+        id: "8",
+        title: "Effektiv lagerstyring og automatisering",
+        client: "Würth",
+        year: 2023,
+        category: "Logistics",
+        videoUrl: "/case-video-2.mp4", // Reusing video 2
+        thumbnailUrl: "/case-image-2.png", // Reusing image 2
+        slug: "wurth-automation",
+      },
     ];
 
     const displayCaseStudies =
@@ -197,7 +237,7 @@ const CaseStudySliderComponent = React.forwardRef<
             {includeContentSlide && (
               <CarouselItem
                 key="content-slide"
-                className="basis-auto pl-6 md:pl-8 lg:pl-[calc((100vw-1188px)/2+48px)]"
+                className="basis-auto pl-6 md:pl-8 lg:pl-[calc((100vw-1188px)/2+60px)]" // class="max-w-[1188px] mx-auto px-6 md:px-8 lg:px-12"
               >
                 <div className="h-full flex">
                   <CaseStudyContent

@@ -26,7 +26,7 @@ export const CaseStudySection = React.forwardRef<
       {...props}
     >
       {/* Header - constrained to max-width */}
-      <div className="max-w-[1188px] mx-auto px-6 md:px-8">
+      <div className="max-w-[1188px] mx-auto px-6 md:px-8 lg:px-12">
         <div className="w-full mb-8">
           <CaseStudySlider.Header carouselApi={carouselApi} />
         </div>

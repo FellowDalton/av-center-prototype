@@ -5,6 +5,10 @@ import React, { useRef, useEffect, useCallback } from "react";
 interface Dot {
   x: number;
   y: number;
+  originalX: number;
+  originalY: number;
+  displacedX: number;
+  displacedY: number;
   baseColor: string;
   targetOpacity: number;
   currentOpacity: number;
@@ -28,15 +32,17 @@ export default function BackgroundDotsCanvas(): React.ReactElement {
     y: null,
   });
 
-  const DOT_SPACING = 25;
-  const BASE_OPACITY_MIN = 0.4;
-  const BASE_OPACITY_MAX = 0.5;
-  const BASE_RADIUS = 1;
-  const INTERACTION_RADIUS = 150;
+  const DOT_SPACING = 12;
+  const BASE_OPACITY_MIN = 0.3;
+  const BASE_OPACITY_MAX = 0.4;
+  const BASE_RADIUS = 0.7;
+  const INTERACTION_RADIUS = 250;
   const INTERACTION_RADIUS_SQ = INTERACTION_RADIUS * INTERACTION_RADIUS;
-  const OPACITY_BOOST = 0.6;
-  const RADIUS_BOOST = 2.5;
+  const OPACITY_BOOST = 0.5;
+  const RADIUS_BOOST = 2.0;
   const GRID_CELL_SIZE = Math.max(50, Math.floor(INTERACTION_RADIUS / 1.5));
+  const WAVE_STRENGTH = 0.4;
+  const MIN_DOT_DISTANCE = 8;
 
   const handleMouseMove = useCallback((event: globalThis.MouseEvent) => {
     const canvas = canvasRef.current;
@@ -80,6 +86,10 @@ export default function BackgroundDotsCanvas(): React.ReactElement {
         newDots.push({
           x,
           y,
+          originalX: x,
+          originalY: y,
+          displacedX: x,
+          displacedY: y,
           baseColor: `rgba(156, 163, 175, ${BASE_OPACITY_MAX})`,
           targetOpacity: baseOpacity,
           currentOpacity: baseOpacity,
@@ -169,18 +179,63 @@ export default function BackgroundDotsCanvas(): React.ReactElement {
 
       let interactionFactor = 0;
       dot.currentRadius = dot.baseRadius;
+      
+      // Calculate wave displacement
+      let displacementX = 0;
+      let displacementY = 0;
 
-      if (mouseX !== null && mouseY !== null && activeDotIndices.has(index)) {
-        const dx = dot.x - mouseX;
-        const dy = dot.y - mouseY;
+      if (mouseX !== null && mouseY !== null) {
+        const dx = dot.originalX - mouseX;
+        const dy = dot.originalY - mouseY;
         const distSq = dx * dx + dy * dy;
 
-        if (distSq < INTERACTION_RADIUS_SQ) {
+        if (distSq < INTERACTION_RADIUS_SQ && distSq > 0) {
           const distance = Math.sqrt(distSq);
-          interactionFactor = Math.max(0, 1 - distance / INTERACTION_RADIUS);
-          interactionFactor = interactionFactor * interactionFactor;
+          
+          // Calculate interaction factor for visuals
+          if (activeDotIndices.has(index)) {
+            interactionFactor = Math.max(0, 1 - distance / INTERACTION_RADIUS);
+            interactionFactor = interactionFactor * interactionFactor;
+          }
+          
+          // Calculate wave displacement - dots compress towards mouse
+          const waveInfluence = Math.max(0, 1 - distance / INTERACTION_RADIUS);
+          const compressionFactor = waveInfluence * waveInfluence * WAVE_STRENGTH;
+          
+          // Calculate compression towards mouse (negative values move towards mouse)
+          const compressionX = -dx * compressionFactor;
+          const compressionY = -dy * compressionFactor;
+          
+          // Apply displacement with minimum distance constraint
+          const targetX = dot.originalX + compressionX;
+          const targetY = dot.originalY + compressionY;
+          
+          // Check distance from mouse position to ensure minimum spacing
+          const newDx = targetX - mouseX;
+          const newDy = targetY - mouseY;
+          const newDistSq = newDx * newDx + newDy * newDy;
+          
+          if (newDistSq < MIN_DOT_DISTANCE * MIN_DOT_DISTANCE) {
+            // Keep minimum distance from mouse
+            const minDist = MIN_DOT_DISTANCE;
+            const angle = Math.atan2(dy, dx);
+            displacementX = mouseX + Math.cos(angle) * minDist - dot.originalX;
+            displacementY = mouseY + Math.sin(angle) * minDist - dot.originalY;
+          } else {
+            displacementX = compressionX;
+            displacementY = compressionY;
+          }
         }
       }
+      
+      // Smooth interpolation to target position
+      const lerpFactor = 0.15;
+      dot.displacedX = dot.displacedX + (dot.originalX + displacementX - dot.displacedX) * lerpFactor;
+      dot.displacedY = dot.displacedY + (dot.originalY + displacementY - dot.displacedY) * lerpFactor;
+      
+      // Update actual position
+      dot.x = dot.displacedX;
+      dot.y = dot.displacedY;
 
       const finalOpacity = Math.min(
         1,
@@ -210,6 +265,8 @@ export default function BackgroundDotsCanvas(): React.ReactElement {
     RADIUS_BOOST,
     BASE_OPACITY_MIN,
     BASE_OPACITY_MAX,
+    WAVE_STRENGTH,
+    MIN_DOT_DISTANCE,
   ]);
 
   useEffect(() => {

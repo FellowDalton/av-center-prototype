@@ -14,7 +14,7 @@ export const SectionContainer = React.forwardRef<
   SectionContainerProps
 >(({ variant = "default", children, className, ...props }, ref) => {
   const containerClasses = {
-    default: "max-w-[1188px] mx-auto px-6 md:px-8",
+    default: "max-w-[1188px] mx-auto px-6 md:px-8 lg:px-12",
     full: "w-full",
   };
 

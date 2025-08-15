@@ -174,17 +174,7 @@ const ScrollExpandMedia = ({
                       textBlend ? "mix-blend-difference" : "mix-blend-normal"
                     }`}
                   >
-                    <div
-                      style={{
-                        width: 735,
-                        color: "var(--Color-Neutral-White, white)",
-                        fontSize: 60,
-                        fontFamily: "Neulis Sans",
-                        fontWeight: "500",
-                        wordWrap: "break-word",
-                        paddingTop: "8vw",
-                      }}
-                    >
+                    <div className="w-[735px] justify-start text-white text-6xl text-white text-4xl font-medium font-neulis pt-[8vw]">
                       Salg, service og udlejning af AV-løsninger
                     </div>
                   </div>

@@ -32,7 +32,7 @@ export default function HomeTemplate(): React.ReactElement {
 
   return (
     <div className="bg-black text-gray-300 min-h-screen">
-      <CursorFollower />
+      {/* <CursorFollower /> */}
       <BackgroundDotsCanvas />
       <Header />
       {/* Mobile-only sticky-from-bottom NavBar. Starts fixed at bottom, sticks below header on scroll */}
@@ -48,7 +48,7 @@ export default function HomeTemplate(): React.ReactElement {
           <NavBar items={navItems} />
         </div>
       </div>
-      
+
       {/* ScrollHero - wrapped in SectionContainer */}
       <SectionContainer variant="default">
         <ScrollHero />
