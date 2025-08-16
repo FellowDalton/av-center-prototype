@@ -36,7 +36,7 @@ export function LinkList({
             <div className="justify-start text-white text-base font-medium font-jetbrains">
               Pre header
             </div>
-            <div className="flex-1 h-0 outline outline-[0.50px] outline-offset-[-0.25px] outline-gray-cold-400"></div>
+            <div className="flex-1 h-[0.5px] bg-gray-cold-400" />
           </div>
           <div className="self-stretch justify-start text-white text-4xl font-normal font-neulis">
             Overskrift hvor der beskrives mere specifikt om AV•Centers services
@@ -53,7 +53,7 @@ export function LinkList({
         {/* Right Link List Panel - Figma Style */}
         <div className="flex flex-col justify-start items-center w-full max-w-[380px] ml-auto">
           {/* Top divider */}
-          <div className="self-stretch h-px border-t border-gray-400" />
+          <div className="w-full h-[0.5px] bg-gray-cold-400" />
 
           {linkItems.map((item) => (
             <React.Fragment key={item.id}>
@@ -116,7 +116,7 @@ export function LinkList({
               </div>
 
               {/* Bottom divider for each item */}
-              <div className="self-stretch h-px border-t border-gray-400" />
+              <div className="w-full h-[0.5px] bg-gray-cold-400" />
             </React.Fragment>
           ))}
         </div>

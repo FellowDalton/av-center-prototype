@@ -71,7 +71,7 @@ const CaseStudyHeader = React.forwardRef<
         </span>
 
         {/* Decorative line */}
-        <div className="flex-1 h-[0.5px] bg-gray-400/40" />
+        <div className="flex-1 h-[0.5px] bg-gray-cold-400" />
       </div>
 
       {/* Navigation buttons */}
