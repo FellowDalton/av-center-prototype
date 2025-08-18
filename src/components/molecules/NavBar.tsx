@@ -64,7 +64,7 @@ export function NavBar({ items, inline, className }: NavBarProps) {
             className="font-['Neulis_Sans:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[14px] text-left text-nowrap"
             id="node-I434_2598-434_2003"
           >
-            <p className="block leading-[normal] whitespace-pre">Services</p>
+            <p className="block leading-[normal] whitespace-pre">Kompetencer</p>
           </div>
           <div
             className="h-2.5 overflow-clip relative shrink-0 w-4"
@@ -85,7 +85,7 @@ export function NavBar({ items, inline, className }: NavBarProps) {
             className="font-['Neulis_Sans:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[14px] text-left text-nowrap"
             id="node-I434_2598-434_2005"
           >
-            <p className="block leading-[normal] whitespace-pre">Løsninger</p>
+            <p className="block leading-[normal] whitespace-pre">Services</p>
           </div>
         </div>
 
@@ -111,22 +111,11 @@ export function NavBar({ items, inline, className }: NavBarProps) {
             className="font-['Neulis_Sans:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[14px] text-left text-nowrap"
             id="node-I434_2598-434_2009"
           >
-            <p className="block leading-[normal] whitespace-pre">Viden</p>
+            <p className="block leading-[normal] whitespace-pre">Insights</p>
           </div>
         </div>
 
-        <div
-          className="box-border content-stretch flex flex-row gap-2 items-center justify-center px-6 py-4 relative shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
-          data-name="Item"
-          id="node-I434_2598-434_2010"
-        >
-          <div
-            className="font-['Neulis_Sans:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[14px] text-left text-nowrap"
-            id="node-I434_2598-434_2011"
-          >
-            <p className="block leading-[normal] whitespace-pre">Support</p>
-          </div>
-        </div>
+       
 
         {/* Icons Section */}
         <div
