@@ -1,11 +1,60 @@
 @import "tailwindcss";
 
+/* Typekit Font Definitions */
+@import url("https://p.typekit.net/p.css?s=1&k=uwg8bue&ht=tk&f=53805.53807.53811&a=8923972&app=typekit&e=css");
+
+@font-face {
+  font-family: "neulis-sans";
+  src: url("https://use.typekit.net/af/f9ebe8/00000000000000007750b298/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/f9ebe8/00000000000000007750b298/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/f9ebe8/00000000000000007750b298/31/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+      format("opentype");
+  font-display: auto;
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "neulis-sans";
+  src: url("https://use.typekit.net/af/f355fc/00000000000000007750b299/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/f355fc/00000000000000007750b299/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/f355fc/00000000000000007750b299/31/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3")
+      format("opentype");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "neulis-sans";
+  src: url("https://use.typekit.net/af/9dacfe/00000000000000007750b29a/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/9dacfe/00000000000000007750b29a/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/9dacfe/00000000000000007750b29a/31/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+      format("opentype");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+}
+
+.tk-neulis-sans {
+  font-family: "neulis-sans", sans-serif;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
   --muted: #111827;
-  --muted-foreground: #9CA3AF;
-  --border: #1F2937;
+  --muted-foreground: #9ca3af;
+  --border: #1f2937;
 }
 
 @theme inline {
@@ -16,7 +65,7 @@
   --color-border: var(--border);
 
   /* Typography families from Figma */
-  --font-sans: "Neulis Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI,
+  --font-sans: "neulis-sans", ui-sans-serif, system-ui, -apple-system, Segoe UI,
     Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol";
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
@@ -126,7 +175,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
 
 /* Font utility classes */
