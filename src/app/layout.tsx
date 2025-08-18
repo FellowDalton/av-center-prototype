@@ -9,8 +9,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AV ⏺ Center",
-  description: "AV ⏺ Center Website",
+  title: "AV CENTER",
+  description: "AV CENTER Website",
 };
 
 export default function RootLayout({
