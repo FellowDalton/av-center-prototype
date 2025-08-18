@@ -22,7 +22,7 @@ export const CaseStudySection = React.forwardRef<
   return (
     <section
       ref={ref}
-      className={cn("w-full py-20 md:py-24 md:mb-[250px]", className)}
+      className={cn("w-full py-20 md:py-24", className)}
       {...props}
     >
       {/* Header - constrained to max-width */}

@@ -9,6 +9,7 @@ import { NavBar } from "@/components/molecules/NavBar";
 import { LinkList } from "@/components/molecules/LinkList";
 import { CaseStudySection } from "@/components/sections/CaseStudySection";
 import { SectionContainer } from "@/components/layout/SectionContainer";
+import { Footer } from "@/components/organisms/Footer";
 import { Briefcase, FileText, Home, User } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import CursorFollower from "@/components/animations/CursorFollower";
@@ -33,7 +34,7 @@ export default function HomeTemplate(): React.ReactElement {
 
   return (
     <div className="bg-black text-gray-300 min-h-screen relative">
-      {/* <CursorFollower /> */}
+      <CursorFollower />
       {/*  <BackgroundDotsCanvas /> */}
 
       {/* Fixed Waves background that becomes absolute when scrolled past */}
@@ -82,7 +83,10 @@ export default function HomeTemplate(): React.ReactElement {
       {/* Case Study Section - handles its own edge layout with solid background to hide waves */}
       <CaseStudySection className="relative z-20 bg-emerald-950" />
 
-      <div className="w-full bg-black py-20" />
+      <div className="w-full bg-black py-60 z-20" />
+
+      {/* Footer */}
+      <Footer className="relative z-20" />
     </div>
   );
 }
