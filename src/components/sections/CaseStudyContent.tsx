@@ -28,7 +28,7 @@ export const CaseStudyContent = React.forwardRef<
       <div
         ref={ref}
         className={cn(
-          "flex flex-col gap-8 h-full min-h-[400px] pb-8",
+          "flex flex-col gap-6 h-full min-h-[400px] pb-8",
           className
         )}
         {...props}

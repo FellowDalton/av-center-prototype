@@ -65,7 +65,7 @@ export function Header(): React.ReactElement {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="px-6 md:px-10 lg:px-16"
       >
-        <nav className="flex justify-between max-w-[1188px] mx-auto h-[70px]">
+        <nav className="flex justify-between max-w-[1220px] mx-auto mt-8">
           {/* Logo Section */}
           <Logo />
 

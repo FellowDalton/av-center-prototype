@@ -32,7 +32,6 @@ export function LinkList({
         {/* Left Text Panel - Updated to match Figma style */}
         <div className="w-[478px] inline-flex flex-col justify-center items-start gap-6">
           <div className="self-stretch inline-flex justify-start items-center gap-2">
-            <div className="w-1 h-1 bg-emerald-500 rounded-[999px]" />
             <div className="justify-start text-white text-base font-medium font-jetbrains">
               Pre header
             </div>

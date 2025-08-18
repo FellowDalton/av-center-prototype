@@ -59,12 +59,7 @@ export const CaseStudyCard = React.forwardRef<
           {...props}
         >
           {/* Background Image - Always visible but behind video when hovering */}
-          <Image
-            src={thumbnailUrl}
-            alt={title}
-            fill
-            className="object-cover"
-          />
+          <Image src={thumbnailUrl} alt={title} fill className="object-cover" />
 
           {/* Background Video - Brought to front on hover with z-index */}
           <video
@@ -107,8 +102,8 @@ export const CaseStudyCard = React.forwardRef<
               {/* Client name on top */}
               <p
                 className={cn(
-                  "text-base font-jetbrains font-normal leading-normal transition-all duration-500",
-                  isHovered ? "text-emerald-400 mb-2" : "text-white mb-3"
+                  "text-base font-jetbrains font-normal text-white leading-normal transition-all duration-500",
+                  isHovered ? "mb-2" : " mb-3"
                 )}
               >
                 {client}

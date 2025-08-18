@@ -70,14 +70,19 @@ export default function HomeTemplate(): React.ReactElement {
 
         {/* Text Accordion Section - wrapped in SectionContainer */}
         <section className="relative">
-          <SectionContainer variant="default" className="py-10 lg:py-20">
+          <SectionContainer
+            variant="default"
+            className="py-10 lg:py-20 lg:mb-[250px]"
+          >
             <LinkList />
           </SectionContainer>
         </section>
       </div>
 
       {/* Case Study Section - handles its own edge layout with solid background to hide waves */}
-      <CaseStudySection className="relative z-20 bg-black" />
+      <CaseStudySection className="relative z-20 bg-emerald-950" />
+
+      <div className="w-full bg-black py-20" />
     </div>
   );
 }

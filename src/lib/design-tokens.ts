@@ -155,7 +155,7 @@ export const animations = {
 export const breakpoints = {
   sm: "640px",
   md: "768px",
-  lg: "1188px",
+  lg: "1220px",
   xl: "1280px",
   "2xl": "1536px",
 } as const;

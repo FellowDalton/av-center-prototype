@@ -62,16 +62,13 @@ const CaseStudyHeader = React.forwardRef<
     >
       {/* Left side with label and line */}
       <div className="flex items-center gap-2 flex-1">
-        {/* Emerald dot */}
-        <div className="w-1 h-1 bg-emerald-500 rounded-full flex-shrink-0" />
-
         {/* Cases label */}
         <span className="text-white text-base font-jetbrains font-medium whitespace-nowrap">
           Cases
         </span>
 
         {/* Decorative line */}
-        <div className="flex-1 h-[0.5px] bg-gray-cold-400" />
+        <div className="flex-1 h-[0.5px] bg-emerald-700" />
       </div>
 
       {/* Navigation buttons */}
@@ -257,7 +254,7 @@ const CaseStudySliderComponent = React.forwardRef<
                 key={caseStudy.id}
                 className={cn(
                   "basis-auto pl-6",
-                  index === displayCaseStudies.length - 1 && "pr-6"
+                  index === displayCaseStudies.length - 1 && "pr-20"
                 )}
               >
                 <CaseStudyCard {...caseStudy} />
@@ -266,9 +263,9 @@ const CaseStudySliderComponent = React.forwardRef<
           </CarouselContent>
         </Carousel>
         <style jsx global>{`
-          @media screen and (min-width: 1188px) {
+          @media screen and (min-width: 1220px) {
             .first-carousel-item {
-              padding-left: calc((100vw - 1188px) / 2 + 60px) !important;
+              padding-left: calc((100vw - 1220px) / 2 + 60px) !important;
             }
           }
         `}</style>

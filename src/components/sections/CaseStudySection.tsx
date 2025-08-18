@@ -22,11 +22,11 @@ export const CaseStudySection = React.forwardRef<
   return (
     <section
       ref={ref}
-      className={cn("w-full py-20 md:py-32", className)}
+      className={cn("w-full py-20 md:py-24 md:mb-[250px]", className)}
       {...props}
     >
       {/* Header - constrained to max-width */}
-      <div className="max-w-[1188px] mx-auto px-6 md:px-8 lg:px-12">
+      <div className="max-w-[1220px] mx-auto px-6 md:px-8 lg:px-12">
         <div className="w-full mb-8">
           <CaseStudySlider.Header carouselApi={carouselApi} />
         </div>
