@@ -16,7 +16,7 @@ export const CaseStudyContent = React.forwardRef<
 >(
   (
     {
-      title = "Et lille udpluk af erfaringer gennem 20 år med lyd og billeder",
+      title = "De løsninger vi skaber for vores kunder, vidner om mange års erfaring og en professionel tilgang.",
       linkText = "Se all cases",
       linkHref = "/cases",
       className,

@@ -33,13 +33,13 @@ export function LinkList({
         <div className="w-[478px] inline-flex flex-col justify-center items-start gap-6">
           <div className="self-stretch inline-flex justify-start items-center gap-2">
             <div className="justify-start text-white text-base font-medium font-jetbrains">
-              Pre header
+              Få mere tid til indholdet
             </div>
             <div className="flex-1 h-[0.5px] bg-gray-cold-400" />
           </div>
           <div className="self-stretch justify-start text-white text-4xl font-normal font-neulis">
-            Overskrift hvor der beskrives mere specifikt om AV•Centers services
-            og løsninger
+            Professionelle AV-løsninger gør møderne mere effektive og sikrer en
+            gnidningsfri konferenceoplevelse.
           </div>
           <div className="self-stretch justify-start text-gray-cold-300 text-base font-normal font-neulis">
             Vi er én af Danmarks førende virksomheder indenfor salg,
