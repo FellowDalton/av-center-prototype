@@ -89,14 +89,14 @@ class Noise {
 const Waves = ({
   lineColor = "black",
   backgroundColor = "transparent",
-  waveSpeedX = 0.00005,
-  waveSpeedY = 0.00007,
+  waveSpeedX = 0.00059,
+  waveSpeedY = 0.00059,
   waveAmpX = 24,
   waveAmpY = 16,
   xGap = 25,
   yGap = 25,
-  friction = 0.97,
-  tension = 0.0007,
+  friction = 0.89,
+  tension = 0.0009,
   maxCursorMove = 100,
   dotSpacing = 25,
   dotSize = 3,
@@ -272,7 +272,13 @@ const Waves = ({
     function drawLines() {
       const { width, height } = boundingRef.current;
       const ctx = ctxRef.current;
-      const { lineColor, dotSpacing, dotSize, gradientRadius, gradientFalloff } = configRef.current;
+      const {
+        lineColor,
+        dotSpacing,
+        dotSize,
+        gradientRadius,
+        gradientFalloff,
+      } = configRef.current;
       const mouse = mouseRef.current;
 
       ctx.clearRect(0, 0, width, height);
@@ -304,7 +310,7 @@ const Waves = ({
             if (mouseDistance > gradientRadius) {
               // Smooth fade out beyond the gradient radius
               const fadeDistance = mouseDistance - gradientRadius;
-              opacity = Math.max(0, 1 - (fadeDistance / gradientFalloff));
+              opacity = Math.max(0, 1 - fadeDistance / gradientFalloff);
             }
 
             // Apply opacity and draw dot
