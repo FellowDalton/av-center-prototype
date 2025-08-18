@@ -42,7 +42,7 @@ const ScrollExpandMedia = ({
     let rafId: number | null = null;
     const handleWheel = (e: Event): void => {
       const wheelEvent = e as WheelEvent;
-      
+
       if (mediaFullyExpanded) {
         // Handle scrolling when video is fully expanded
         if (wheelEvent.deltaY < 0 && window.scrollY <= 5) {
@@ -50,10 +50,18 @@ const ScrollExpandMedia = ({
           setMediaFullyExpanded(false);
           setExtraScrollBuffer(0); // Reset buffer
           e.preventDefault();
-        } else if (wheelEvent.deltaY > 0 && extraScrollBuffer < SCROLL_BUFFER_THRESHOLD) {
+        } else if (
+          wheelEvent.deltaY > 0 &&
+          extraScrollBuffer < SCROLL_BUFFER_THRESHOLD
+        ) {
           // Scrolling down - accumulate buffer before allowing page scroll
           e.preventDefault();
-          setExtraScrollBuffer((prev) => Math.min(prev + Math.abs(wheelEvent.deltaY), SCROLL_BUFFER_THRESHOLD));
+          setExtraScrollBuffer((prev) =>
+            Math.min(
+              prev + Math.abs(wheelEvent.deltaY),
+              SCROLL_BUFFER_THRESHOLD
+            )
+          );
         }
         // If buffer is satisfied, allow normal scrolling (don't prevent default)
       } else if (!mediaFullyExpanded) {
@@ -97,7 +105,9 @@ const ScrollExpandMedia = ({
         } else if (deltaY > 0 && extraScrollBuffer < SCROLL_BUFFER_THRESHOLD) {
           // Swiping up - accumulate buffer before allowing page scroll
           e.preventDefault();
-          setExtraScrollBuffer((prev) => Math.min(prev + Math.abs(deltaY), SCROLL_BUFFER_THRESHOLD));
+          setExtraScrollBuffer((prev) =>
+            Math.min(prev + Math.abs(deltaY), SCROLL_BUFFER_THRESHOLD)
+          );
           setTouchStartY(touchY);
         } else if (deltaY > 0 && extraScrollBuffer >= SCROLL_BUFFER_THRESHOLD) {
           // Buffer satisfied, allow normal scrolling
@@ -147,7 +157,13 @@ const ScrollExpandMedia = ({
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [scrollProgress, mediaFullyExpanded, touchStartY, extraScrollBuffer, SCROLL_BUFFER_THRESHOLD]);
+  }, [
+    scrollProgress,
+    mediaFullyExpanded,
+    touchStartY,
+    extraScrollBuffer,
+    SCROLL_BUFFER_THRESHOLD,
+  ]);
 
   // Measure the wrapper's pixel size (100% width with 16/9 aspect)
   useEffect(() => {
@@ -165,7 +181,7 @@ const ScrollExpandMedia = ({
 
   // Pixel-accurate mask: compute from measured width/height (16/9). Start as 1/1 circle, morph to 16/9 rounded rect.
   const { width: containerWidthPx, height: containerHeightPx } = containerSize;
-  
+
   // Responsive circle scale based on screen width
   const getInitialCircleScale = () => {
     if (containerWidthPx < 768) return 0.4; // mobile
@@ -173,7 +189,7 @@ const ScrollExpandMedia = ({
     if (containerWidthPx < 1536) return 0.5; // laptop
     return 0.6; // desktop
   };
-  
+
   const initialCircleScale = getInitialCircleScale();
   const initialSquarePx = Math.max(
     50,
@@ -196,7 +212,7 @@ const ScrollExpandMedia = ({
     if (containerWidthPx < 1536) return 67; // laptop
     return 65; // desktop
   };
-  
+
   const startPercent = getStartPosition();
   const endPercent = 50;
   const topPercent =
@@ -221,7 +237,7 @@ const ScrollExpandMedia = ({
                       textBlend ? "mix-blend-difference" : "mix-blend-normal"
                     }`}
                   >
-                    <div className="max-w-[735px] w-full px-4 lg:px-0 justify-start text-white text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-medium font-neulis pt-[4vw] md:pt-[6vw] lg:pt-[8vh]">
+                    <div className="max-w-[735px] w-full px-4 lg:px-0 justify-start text-white text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-medium font-neulis pt-[4vw] md:pt-[6vw] lg:pt-[11vh]">
                       Salg, service og udlejning af AV-løsninger
                     </div>
                   </div>
