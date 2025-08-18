@@ -43,6 +43,8 @@ export default function HomeTemplate(): React.ReactElement {
           lineColor="rgba(255, 255, 255, 0.1)"
           waveSpeedX={0.0}
           waveSpeedY={0.0}
+          gradientRadius={250}
+          gradientFalloff={100}
           className="pointer-events-auto"
         />
       </div>
@@ -83,7 +85,7 @@ export default function HomeTemplate(): React.ReactElement {
       {/* Case Study Section - handles its own edge layout with solid background to hide waves */}
       <CaseStudySection className="relative z-20 bg-emerald-950" />
 
-      <div className="w-full bg-black py-60 z-20" />
+      <div className="w-full bg-black py-60 relative z-20" />
 
       {/* Footer */}
       <Footer className="relative z-20" />
